@@ -1,0 +1,120 @@
+/* Mengatur background dan layout keseluruhan */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Layer biru transparan di atas background */
+.blue-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 71, 179, 0.7); /* Warna biru dengan transparansi */
+    z-index: 1; /* Layer ini ada di belakang konten login */
+}
+
+/* Mengatur container agar berada di atas layer biru */
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2; /* Agar berada di atas layer biru */
+}
+
+.left-side {
+    flex: 1;
+    text-align: left;
+    color: white;
+    padding-right: 50px;
+}
+
+/* Mengatur flexbox pada logo dan teks */
+.logo-container {
+    display: flex;
+    align-items: center; /* Menyelaraskan logo dan teks secara vertikal */
+}
+
+.logo-container img {
+    width: 120px;
+    margin-right: 20px; /* Jarak antara logo dan teks */
+}
+
+.text-container h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.text-container h2 {
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* Kotak login pada bagian kanan */
+.right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Style untuk input field */
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0047b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-box button:hover {
+    background-color: #003399;
+}

@@ -1,0 +1,841 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+    /* margin: 0;
+    padding: 0; */
+
+}
+
+:root{
+  --a: #323FA7;
+  --b: #242D8B; 
+  --c: #312E81;  
+  --d: #7577F2;  
+  --e: #FFFFFF;  
+  --f: #FB923C;  
+  --g: #334155;  
+  --h: #64748B;  
+  --i: #1D4ED8;  
+  --j: #EFF3FF;  
+  --k: #C0110F; 
+  --l: #eee;  
+  --sidebar-width:323px;  
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    
+}body {
+    background: var(--j);
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+/* sidebar */
+#sidebar{
+    position: fixed;
+    width: var(--sidebar-width);
+    background: var(--a);
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top: 2rem;
+}#sidebar.hide {
+	width: 60px;
+    padding-top: 1rem;
+}#sidebar .logo{
+    align-items: center;
+    margin: 0 20px;
+    transition: all .3s ease;
+}#sidebar.hide .logo{
+    margin: 0 5px;
+    transition: margin .3s ease;
+    justify-content: flex-start;
+}#sidebar.hide .logo img {
+    width: 220px; /* Atur ukuran logo lebih kecil */
+    height: 40;
+    transition: width .3s ease;
+}#sidebar .icon{
+    font-size: 30px;
+    padding: 0 30px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}#sidebar.hide .icon{
+    padding: 0 0;
+    transition: padding .3s ease;
+}#sidebar .side-menu{
+    padding: 20px 20px;
+}#sidebar.hide .side-menu{
+    padding: 20px 15px;
+    transition: all;
+}#sidebar .side-menu > li >  a{
+    font-weight: 400;
+    font-size: 16;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding: 12px 10px ;
+    transition: all .3s ease;
+}#sidebar.hide .side-menu > li > a {
+    font-size: 0; /* Sembunyikan teks menu */
+    justify-content: flex-start; /* Tengah-kan icon */
+    padding: 12px 0px ;
+    transition: all ;
+}#sidebar .side-menu  li  a:hover{
+    color: var(--f);
+ }
+#sidebar .side-menu  li.active  a{ 
+    color: var(--d);
+}#sidebar.hide .side-menu  li.active  a{ 
+    font-size: 0;
+    transition: all;
+}
+/* sidebar */
+
+
+
+/* content */
+#content {
+    position: relative;
+    width: calc(100% - var(--sidebar-width));
+    left: var(--sidebar-width);
+    min-height: 100vh; /* Ganti height dengan min-height */
+}
+#sidebar.hide ~ #content {
+	width: calc(100% - 60px);
+	left: 60px;
+}
+.btn-yellow{
+    background: var(--f);
+}.btn-red{
+    background: var(--k);
+}.btn-blue{
+    background: var(--b);
+}.btn-disabled {
+    background-color: #d3d3d3; /* Warna abu-abu */
+    color: #fff; /* Warna teks */
+    padding: 10px 20px;
+    border: none;
+    cursor: not-allowed; /* Menunjukkan bahwa tombol tidak bisa diklik */
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* content */
+
+
+/* style datatable bootstrap */
+
+/* Styling untuk search box */
+/* Mengatur tampilan input search box */
+.dataTables_filter input {
+    width: 200px; /* Sesuaikan lebar sesuai kebutuhan */
+    padding: 10px 15px;
+    border-radius: 50px; /* Membuat sudut input menjadi bulat */
+    border: 1px solid #ddd;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+/* Mengatur gaya saat input search difokuskan */
+.dataTables_filter input:focus {
+    border-color: #007bff; /* Warna border saat input aktif */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Mengatur tampilan tombol search */
+.search-btn {
+    background-color: #007bff; /* Warna biru sesuai desain */
+    border: none;
+    border-radius: 50%;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect untuk tombol search */
+.search-btn:hover {
+    background-color: #0056b3; /* Warna biru lebih gelap saat di-hover */
+}
+
+/* Menyusun search box dan tombol agar sejajar */
+.form-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Menyesuaikan ukuran dan posisi ikon dalam tombol */
+.search-btn i {
+    font-size: 1.2rem;
+}
+/* Styling tombol pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.5rem 1rem; /* Padding untuk tombol */
+    margin: 0 0.1rem; /* Margin untuk tombol */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background:  #007bff; /* Warna latar belakang untuk tombol aktif */
+    color: white; /* Warna teks untuk tombol aktif */
+    border-radius: 0.25rem; /* Sudut tombol aktif */
+} 
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 0.25rem; /* Sudut dropdown */
+}
+.dataTables_wrapper .dataTables_length label {
+    padding: 8px 0  ;
+}
+
+/* Styling input search */
+
+
+/* Header tabel */
+
+
+/* style datatable bootstrap */
+
+/* navbar */
+nav{
+    background: var(--e);
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    grid-gap:28px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}nav .toggle-sidebar{
+    font-size: 30px;
+    color: var(--a);
+    cursor: pointer;
+}nav .nav-link{
+    position: relative;
+}nav .nav-link .icon{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--a);
+    font-style: normal;
+}
+nav .profile{
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* This will push the profile to the right */
+    position: relative;
+}nav .profile img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px; 
+}nav .profile .username{
+    display: flex;
+    color: var(--a);
+    background: none;
+    align-items: center;  
+    border: none;
+    padding: 0 0 ;
+    font-size: 16px;
+    cursor: pointer;
+}nav .profile .username .icon-right {
+    transition: transform 0.3s ease; /* Smooth rotation transition */
+}nav .profile .username .icon-right.rotate {
+    transform: rotate(90deg); /* Rotate by 90 degrees */
+}nav .profile .profile-link{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--e);
+    padding: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    width: 100px;
+    opacity:0 ;
+    pointer-events: none;
+    transition: all .3s ease;
+}nav .profile .profile-link.show{
+    opacity: 1;
+    pointer-events: visible;
+    margin: 0 ;
+    top: 100%;
+}nav .profile .profile-link a{
+    color: var(--a);
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    transition: all .3s ease;
+}nav .profile .profile-link a:hover{
+    background: var(--j);
+    
+}
+/* navbar */
+
+/* main */
+main {
+    width: 100%;
+    padding-top: 36px ;
+    /* Hapus max-height dan overflow-y */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 70px;
+
+}
+
+main .box-info {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-gap: 80px;
+	margin-top: 36px;
+    margin-right: 36px;
+}main .box-info li {
+	padding: 20px;
+	background: var(--e);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	/* grid-gap: 24px; */
+}main .box-info li img {
+	width: 80px;
+	height: 80px;
+    margin-right: 20px;
+	border-radius: 10px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}main .box-info .text p {
+    font-weight: 500;
+    color: var(--h);
+}main .box-info .text h3 {
+    text-align: center;
+}
+
+main .table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin: 24px 0 ;
+    padding: 0 40px;
+	color: var(--g);
+}
+main .table-data > div {
+	border-radius: 20px;
+	background: var(--e);
+	padding: 24px;
+	overflow-x: auto;
+}main .table-data .data {
+	flex-grow: 1;
+	flex-basis: 500px;
+}main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}main .table-data .head .form-input{
+    display: flex;
+	align-items: center;
+	height: 36px;
+}main .table-data .head .form-input input {
+    flex-grow: 1;
+	padding: 0 16px;
+	height: 100%;
+	border: none;
+	background: var(--l);
+	border-radius: 36px 0 0 36px;
+	outline: none;
+	width: 100%;
+	color: var(--g);
+}main .table-data .head .form-input button {
+    width: 36px;
+    height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--i);
+	color: var(--e);
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 0 36px 36px 0;
+	cursor: pointer;
+}main .table-data .head .add-data {
+    color: var(--a);
+    font-size: 35px;
+    align-items: center;
+}main .table-data .data table {
+	width: 100%;
+	border-collapse: collapse;
+}main .table-data .data table th {
+    padding: 12px 0;
+	font-size: 13px;
+    background: var(--a);
+    color: var(--e);
+    align-items: center;
+    text-align: center; /* Rata tengah */
+    vertical-align: middle;
+}main .table-data .data table td {
+	padding: 16px 0;
+    text-align: center; /* Rata tengah */
+    vertical-align: middle;
+}main .table-data .data table td img {
+	width: 50px;
+	height: 50px;
+	border-radius: 10%;
+	object-fit: cover;
+}main .table-data .data table tbody tr {
+    border-bottom: 0.1rem solid var(--g);
+    align-items: center;
+}main .table-data .data table tbody tr:hover {
+	background: var(--j);
+}main .table-data .data table .action{
+    padding: 3px 8px;
+    display: inline-block;
+    border: none;
+    color: var(--e);
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* main */
+
+/* footer */
+footer{
+    padding-top: 30px ;
+    display: flex;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}footer div{
+    background: var(--e);
+    width: 100%;
+}footer p {
+    margin: 20px 40px;
+    font-weight: 500;
+    font-size: 16;
+    color: var(--h);
+}footer p span{
+    color: var(--i);
+}
+/* footer */
+
+/* Global settings for responsiveness */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--j);
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+/* User Pembaca */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--j);
+}
+.header {
+    background-color: var(--a);
+    color: white;
+    padding-left: 95px;
+    padding-right: 95px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container {
+    display: flex;
+    justify-content: center;  /* Untuk menempatkan logo di tengah secara horizontal */
+    align-items: center;      /* Untuk menempatkan logo di tengah secara vertikal */
+    height: 100px;            /* Sesuaikan tinggi container jika diperlukan */
+}
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+.header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+.header .nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.header .nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400; /* Sesuaikan font-weight */
+    font-size: 16px; /* Sesuaikan ukuran font */
+    display: flex;
+    align-items: center;
+    padding: 12px 10px; /* Sesuaikan padding */
+    transition: all 0.3s ease; /* Tambahkan transisi */
+}
+.header .nav a:hover {
+    color: var(--f); /* Sesuaikan warna saat hover */
+}
+.header .nav a.active {
+    color: var(--d); /* Warna biru untuk teks saat dipilih */
+}
+.header .user {
+    display: flex;
+    align-items: center;
+}
+.header .user i {
+    margin-right: 10px;
+}
+.main {
+    padding-left: 95px;
+    padding-right: 95px;
+}
+.main h1 {
+    color: var(--a);
+    display: flex; /* Menggunakan flexbox untuk menyusun elemen */
+    align-items: center; /* Menyelaraskan teks di tengah secara vertikal */
+}
+
+.main h1::after {
+    content: ""; /* Menyediakan konten untuk pseudo-elemen */
+    margin-left: 3%; /* Jarak antara teks dan garis */
+    height: 0.5px; /* Tinggi garis */
+    flex-grow: 1; /* Membuat garis mengambil sisa ruang */
+    background-color: var(--a); /* Mengatur warna garis */
+}
+.header-container {
+    display: flex;
+    align-items: center; /* Agar elemen judul dan filter sejajar di tengah secara vertikal */
+    justify-content: space-between; /* Memberikan ruang antara judul dan form filter */
+    margin-bottom: 20px; /* Memberikan jarak di bawah header */
+    white-space: nowrap;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    gap: 10px; /* Menambahkan jarak antar elemen dalam form */
+}
+
+.filter select, .filter input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    width: 200px; /* Set lebar elemen select dan input agar lebih proporsional */
+}
+
+.filter button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.filter button:hover {
+    background-color: #0056b3; /* Ubah warna saat tombol di-hover */
+}
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;                             
+    padding-bottom: 40px;
+}
+
+.book {
+    background-color: white;
+    padding: 0;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;             
+}
+
+.book img {
+    display: block;
+    border-radius: 10px; /* Mengatur border radius */
+    width: 85%; /* Ukuran gambar kecil */
+    margin: 10px auto; /* Memberikan jarak (margin) agar tidak menempel */
+}
+
+.book h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Batasi maksimal 3 baris */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Tambahkan elipsis (...) */
+    white-space: normal; /* Mengizinkan teks multi-line */
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--a);
+    box-sizing: border-box;
+    border-bottom: 1px solid #64748B;
+    padding-bottom: 10px;
+    word-break: break-word; /* Agar teks panjang terpotong dengan baik */
+}
+
+.book h4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Batasi maksimal 3 baris */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Tambahkan elipsis (...) */
+    white-space: normal; /* Mengizinkan teks multi-line */
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--a);
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #64748B; */
+    padding-bottom: 10px;
+    word-break: break-word; /* Agar teks panjang terpotong dengan baik */
+}
+       
+.book p {
+    color: #777;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.footer {
+    display: flex;
+    flex-direction: column; /* Mengatur agar elemen dalam footer disusun vertikal */
+    align-items: center; /* Agar semua elemen di tengah */
+    background-color: var(--a); /* Contoh warna latar belakang */
+    color: white;
+    padding: 20px;
+    padding-right: 95px;
+    padding-left: 85px;
+    text-align: center;
+}
+.footer .logo img {
+    width: 275px; /* Sesuaikan ukuran logo */
+    margin-bottom: 20px;
+}
+
+.footer-columns {
+    display: flex; /* Kolom diatur secara horizontal */
+    justify-content: space-around; /* Agar kolom tersebar merata */
+    width: 100%; /* Agar kolom mengisi lebar footer */
+    max-width: 1200px; /* Batasi lebar maksimal */
+    
+}
+.footer .column {
+    width: 30%;
+}
+.footer .about-column {
+    border-right: 0.5px solid white; /* Garis vertikal di sebelah kanan ABOUT */
+    padding-right: 20px; /* Jarak dari border agar konten tidak terlalu rapat */
+}
+
+.footer .lokasi-column {
+    padding-left: 20px; /* Jarak dari border agar konten tidak terlalu rapat */
+}
+.footer .column h3 {
+    margin-top: 0;
+}
+.footer .column p, .footer .column a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+.footer .social {
+    display: flex;
+    gap: 10px;
+}
+.footer .social i {
+    font-size: 20px;
+}
+.copyright {
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    color: var(--a);
+    font-size: 12px;
+    padding: 10px 20px; /* Ganti padding agar lebih responsif */
+    border-radius: 10px;
+    padding-left: 90px;
+    margin: 0;
+    box-sizing: border-box; /* Pastikan padding termasuk dalam lebar elemen */
+}
+
+/* DETAIL BUKU */
+.catalog-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.catalog-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.book-detail {
+    display: flex;
+    flex-direction: column; /* Change to column */
+    align-items: center; /* Center align */
+    background-color: #e5edff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.book-cover {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px; /* Add margin below the cover */
+}
+
+.book-info {
+    text-align: left;
+}
+
+.book-info table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.book-info td {
+    padding: 10px 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end; /* Tombol berada di kanan */
+    gap: 10px; /* Jarak antar tombol */
+}
+
+.btn-back, .btn-borrow {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-back {
+    background-color: transparent; /* Hapus warna latar */
+    color: var(--a); /* Ubah warna teks menjadi hitam */
+    font-weight: bold; /* Buat font bold */
+}
+
+.btn-borrow {
+    background-color: var(--a);
+    color: #fff;
+    font-weight: bold; /* Buat font bold */
+    padding: 10px 20px; /* Ubah padding agar tombol lebih lebar */
+    border-radius: 50px; /* Buat tombol berbentuk lonjong */
+    border: none;
+    cursor: pointer;
+}
+
+.study-slogan {
+    padding: 40px;
+    padding-left: 130px;
+    background-color: var(--d);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.study-slogan h2 {
+    font-size: 55px;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.study-slogan p {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.study-slogan img {
+    margin-left: 5px; /* Memberi jarak antara teks dan gambar */
+    padding-right: 130px;
+    width: 300px;
+}
+
+
+.category-slogan {
+    display: flex; /* Mengatur kategori dan gambar dalam satu baris */
+    align-items: center; /* Pusatkan gambar dan teks secara vertikal */
+    padding-left: 0%;
+    padding-bottom: 4%;
+    color: var(--d);
+}
+
+.category-slogan img {
+    margin-right: 20px; /* Memberi jarak antara gambar dan kategori */
+    width: 40%; /* Ukuran gambar (ubah sesuai kebutuhan) */
+    height: auto; /* Agar gambar tidak terdistorsi */
+}
+
+/* CSS untuk kategori buku */
+.category-carousel {
+    display: flex; /* Mengatur kategori dalam satu baris */
+    align-items: center; /* Pusatkan item di tengah secara vertikal */
+    font-size: 18px; /* Ukuran font untuk kategori */
+    letter-spacing: 1px;
+    padding-right: 5%;
+    flex-wrap: wrap; 
+}
+
+.category {
+    margin: 0 10px; /* Jarak horizontal antara kategori */
+    display: inline-flex; /* Mengatur kategori agar lebar sesuai teks */
+    align-items: center; /* Pusatkan teks secara vertikal */
+    flex-shrink: 0;
+}
+
+.separator {
+    margin: 0 10px; /* Jarak horizontal antara kategori dan pemisah */
+    color: var(--d); /* Warna pemisah */
+}
+
+.category:hover {
+    color: var(--f); 
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .footer .column {
+        width: 30%; /* Pada layar yang lebih besar, buat kolom lebih kecil */
+        text-align: left; /* Kembalikan ke posisi kiri */
+    }
+}
