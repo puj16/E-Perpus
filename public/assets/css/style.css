@@ -266,6 +266,7 @@ nav .profile{
     opacity:0 ;
     pointer-events: none;
     transition: all .3s ease;
+    
 }nav .profile .profile-link.show{
     opacity: 1;
     pointer-events: visible;
@@ -424,7 +425,7 @@ footer{
     padding-top: 30px ;
     display: flex;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
 }footer div{
     background: var(--e);
@@ -460,6 +461,13 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--j);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Pastikan body memenuhi tinggi viewport */
+}
+
+.main-content {
+    flex-grow: 1; /* Konten utama mengisi ruang yang tersisa */
 }
 .header {
     background-color: var(--a);
@@ -507,6 +515,72 @@ body {
 .header .nav a.active {
     color: var(--d); /* Warna biru untuk teks saat dipilih */
 }
+/* Mengatur tampilan profil pengguna dan dropdown */
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile .username {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.profile .username img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+/* Dropdown menu profil */
+.profile .profile-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--e);
+    padding: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    width: 100px;
+    opacity:0 ;
+    pointer-events: none;
+    transition: all .3s ease;
+    z-index: 1000;
+}
+
+.profile .profile-link.show {
+    opacity: 1;
+    pointer-events: visible;
+    margin: 0 ;
+    top: 100%;
+}
+
+.profile .profile-link li {
+    list-style: none;
+}
+
+.profile .profile-link li a {
+    color: var(--a);
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    transition: all .3s ease;
+}
+
+.profile .profile-link li a:hover {
+    background-color: var(--f); /* Warna saat hover */
+}
+
 .header .user {
     display: flex;
     align-items: center;
@@ -544,6 +618,7 @@ body {
     align-items: center;
     padding-bottom: 5px;
     gap: 10px; /* Menambahkan jarak antar elemen dalam form */
+    flex-wrap: wrap; /* Agar form filter bisa melipat ke baris berikutnya jika ruang terbatas */
 }
 
 .filter select, .filter input {
@@ -635,14 +710,15 @@ body {
 }
 .footer {
     display: flex;
-    flex-direction: column; /* Mengatur agar elemen dalam footer disusun vertikal */
-    align-items: center; /* Agar semua elemen di tengah */
-    background-color: var(--a); /* Contoh warna latar belakang */
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--a);
     color: white;
     padding: 20px;
     padding-right: 95px;
     padding-left: 85px;
     text-align: center;
+    margin-top: auto; /* Footer selalu di bawah */
 }
 .footer .logo img {
     width: 275px; /* Sesuaikan ukuran logo */
@@ -764,14 +840,15 @@ body {
 }
 
 .study-slogan {
-    padding: 40px;
-    padding-left: 130px;
+    width: 100%; /* Lebar penuh layar */
+    padding: 40px 100px;
     background-color: var(--d);
     color: #fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     text-align: left;
+    margin-left: calc(50% - 50vw); /* Memastikan elemen rata tengah dan full layar */
 }
 
 .study-slogan h2 {
@@ -798,6 +875,10 @@ body {
     padding-left: 0%;
     padding-bottom: 4%;
     color: var(--d);
+}
+
+.category-slogan a{
+    color: var(--a);
 }
 
 .category-slogan img {
@@ -831,6 +912,37 @@ body {
 .category:hover {
     color: var(--f); 
 }
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#search {
+    padding-right: 24px; /* Memberikan ruang untuk tombol "X" */
+}
+
+#clearSearch {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--d);
+}
+
+#loading {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {

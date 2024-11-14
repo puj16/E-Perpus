@@ -11,6 +11,7 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\PembacaController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\ProfilAdminController;
+use App\Http\Controllers\ProfilPembacaController;
 
 Route::get('registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasi_post', [AuthController::class, 'registrasi_post'])->name('registrasi_post');
@@ -57,10 +58,13 @@ Route::group(['middleware'=>'pustakawan'], function(){
 });
 
     Route::group(['middleware'=>'member'], function(){
-        Route::get('member/dashboard',[DashboardController::class,'dashboard']); 
+        Route::get('profilePembaca', [ProfilPembacaController::class, 'index'])->name('profilePembaca');
+        Route::post('profilePembacaUpdate', [ProfilPembacaController::class, 'update'])->name('profilePembacaUpdate');
+
+        Route::get('member/dashboard',[DashboardController::class,'dashboard'])->name('pembaca.dashboard'); 
+        Route::get('member/dashboard/{kode_buku}', [DashboardController::class, 'detail'])->name('pembaca.detail');
         Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
         Route::get('/katalog/{kode_buku}', [KatalogController::class, 'show'])->name('katalog.detail');
-        Route::get('/dashboard', [KatalogController::class, 'dashboard'])->name('pembaca.dashboard');
         Route::post('/peminjaman/create/{kode}', [PeminjamanController::class, 'store'])->name('peminjaman.store');
         Route::get('/borrowedlist', [PeminjamanController::class, 'index'])->name('pembaca.pinjam');
 

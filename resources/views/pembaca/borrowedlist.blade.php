@@ -3,23 +3,8 @@
 @section('title', 'Buku yang Dipinjam')
 
 @section('content')
-    <div class="header-container">
-        <h1>Buku yang Dipinjam</h1>
-        <div class="filter">
-            <form method="GET" action="{{ route('katalog.index') }}">
-                <select name="category">
-                    <option value="">-- Filter kategori --</option>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                            {{ $category->nama_kategori }}
-                        </option>
-                    @endforeach
-                </select>
-                <input type="text" name="search" placeholder="Cari Buku" value="{{ request('search') }}">
-            </form>
-        </div>
-    </div>
-
+    <h1>Buku yang Dipinjam</h1>
+    
     <div class="books">
         @if ($dipinjam->isEmpty())
             <p>Tidak ada buku yang dipinjam saat ini.</p>
