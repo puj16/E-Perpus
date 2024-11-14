@@ -6,6 +6,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/profil.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
     <!-- Header Section -->
@@ -14,13 +17,18 @@
             <a href="#" class="logo"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
         </div>
         <div class="nav">
-            <a href="{{ '/dashboard' }}" class="{{ request()->is('dashboard') ? 'active' : '' }}">Dashboard</a>
-            <a href="{{ '/katalog' }}" class="{{ request()->is('katalog') ? 'active' : '' }}">Katalog</a>
-            <a href="{{ '/borrowedlist' }}" class="{{ request()->is('borrowed') ? 'active' : '' }}">Borrowed list</a>
+            <a href="{{ '/member/dashboard' }}" class="{{ request()->is('member/dashboard*') ? 'active' : '' }}">Dashboard</a>
+            <a href="{{ url('/katalog?reset_filters=1') }}" class="{{ request()->is('katalog') ? 'active' : '' }}">Katalog</a>
+            <a href="{{ '/borrowedlist' }}" class="{{ request()->is('borrowedlist') ? 'active' : '' }}">Borrowed list</a>
         </div>
-        <div class="user">
-            <i class="fas fa-user"></i>
-            <span>Member</span>
+        <div class="profile">
+            <button class="username"><img src="{{ asset('storage/assets/fotos/' . $user->foto) }}" alt="">
+                {{ $user->name }}<i class='bx bx-chevron-right icon-right'></i> 
+            </button>
+            <ul class="profile-link">
+                <li><a href="{{ url('profilePembaca') }}"><i class='bx bx-user-circle icon-right'></i>Profil</a></li>
+                <li><a href="{{ route('logout') }}"><i class='bx bx-log-out icon'></i>Log-Out</a></li>
+            </ul>
         </div>
     </div>
 
@@ -57,16 +65,9 @@
         <p>Copyright © 2024 Design By PSDKU POLINEMA KEDIRI</p>
     </div>
 
-    <script>
-        document.querySelectorAll('.book h3').forEach(function (titleElement) {
-            let text = titleElement.textContent.trim();
-            if (text.length > 60) {
-                titleElement.textContent = text.substring(0, 60) + '...';
-            }
-        });
-    </script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
 </body>
 </html>

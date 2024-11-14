@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+    /* margin: 0;
+    padding: 0; */
+
+}
+.card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-top: 40px; /* Menambahkan jarak atas antara card dan elemen di atasnya */
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profile-pic {
+    text-align: center;
+    flex: 1;
+}
+.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+.profile-pic input[type="file"] {
+    display: none;
+}
+.profile-pic label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6C757D;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.profile-pic label:hover {
+    background-color: #5A6268;
+}
+.profile-pic .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.profile-pic .btn.save {
+    background-color: #3A3BFF;
+    color: white;
+}
+.profile-pic .btn.save:hover {
+    background-color: #2A2BFF;
+}
+.profile-pic .btn.ubah {
+    background-color: #FF3B3B;
+    color: white;
+}
+.profile-pic .btn.ubah:hover {
+    background-color: #FF2B2B;
+}
+.form-container {
+    flex: 2;
+    padding: 20px;
+}
+.form-container .form-group {
+    margin-bottom: 15px;
+}
+.form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.form-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #F5F7FF;
+}
+.form-container .form-group input:focus {
+    outline: none;
+    border-color: #3A3BFF;
+}
+.form-container .btn-group {
+    text-align: right;
+}
+.form-container .btn-group .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-container .btn-group .btn.save {
+    background-color: #3A3BFF;
+    color: white;
+}
+.form-container .btn-group .btn.save:hover {
+    background-color: #2A2BFF;
+}
+.form-container .btn-group .btn.back {
+    background-color: #FF3B3B;
+    color: white;
+}
+.form-container .btn-group .btn.back:hover {
+    background-color: #FF2B2B;
+}

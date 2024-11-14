@@ -4,20 +4,13 @@
 
 @section('content')
     <h1>Koleksi Terbaru</h1>
-    <div class="filter">
-        <select>
-            <option>-- Filter kategori --</option>
-            @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option> <!-- Menampilkan kategori -->
-            @endforeach
-        </select>
-        <input type="text" placeholder="Cari Buku">
-    </div>
     <div class="books">
         @foreach ($books as $book)
             <div class="book">
-                <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->judul }}">
-                <h4>{{ $book->judul }}</h4>
+                <a href="{{ route('pembaca.detail', $book->kode_buku) }}">
+                    <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->judul }}">
+                    <h4>{{ $book->judul }}</h4>
+                </a>
             </div>
         @endforeach
     </div>
@@ -33,7 +26,8 @@
         <img src="{{ asset('assets/images/roket.svg') }}" alt="Study Anytime">
         <div class="category-carousel">
             @foreach ($categories as $category)
-                <div class="category"><p>{{ $category->nama_kategori }}</p></div> <!-- Menampilkan kategori -->
+            <a href="{{ route('katalog.index', ['category' => $category->id]) }}">
+                <div class="category"><p>{{ $category->nama_kategori }}</p><a href="{{ route('katalog.index', ['category' => $category->id]) }}"></div> <!-- Menampilkan kategori -->
                 <span class="separator">|</span>
             @endforeach
         </div>
