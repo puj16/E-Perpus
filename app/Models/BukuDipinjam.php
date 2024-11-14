@@ -23,6 +23,18 @@ class BukuDipinjam extends Model
         return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
     }
 
+    public function buku()
+    {
+        return $this->hasOneThrough(
+            Buku::class,            // Model Buku
+            Peminjaman::class,      // Model Peminjaman
+            'id',                   // Foreign key di Peminjaman (relasi ke BukuDipinjam)
+            'kode_buku',            // Foreign key di Buku (relasi ke Peminjaman)
+            'peminjaman_id',        // Foreign key di BukuDipinjam
+            'buku_kode'             // Local key di Peminjaman
+        );
+    }
+
     /**
      * Relasi dengan model Buku.
      * Peminjaman terkait dengan satu buku (relasi one-to-one atau many-to-one)
