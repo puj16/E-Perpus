@@ -30,6 +30,8 @@
                 <li><a href="{{'/tampil-penulis'}}"><i class='bx bxs-edit icon'></i>Data Penulis</a></li>
                 <li><a href="{{'/tampil-penerbit'}}"><i class='bx bxs-paint icon'></i>Data Penerbit</a></li>
                 <li><a href="{{'/buku'}}"><i class='bx bxs-book-open icon'></i>Data Buku</a></li>
+                <li><a href=""><i class='bx bx-upload icon'></i>Peminjaman</a></li>
+                <li><a href=""><i class='bx bx-download icon'></i>Pengembalian</a></li>
             </ul>
         </section>
        <!-- sidebar section end -->
