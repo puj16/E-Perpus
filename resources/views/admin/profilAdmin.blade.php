@@ -58,7 +58,7 @@
 
                                         <div class="mb-3 form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                             <label class="small mb-1 form-control-label" for="input-email">Email</label>
-                                            <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="" value="{{ $user->email }}" required>
+                                            <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="" value="{{ $user->email }}" required  readonly>
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('email') }}</strong>
@@ -68,7 +68,7 @@
 
                                         <div class="mb-3 form-group{{ $errors->has('nohp') ? ' has-danger' : '' }}">
                                             <label class="small mb-1 form-control-label" for="input-nohp">No HP</label>
-                                            <input type="nohp" name="nohp" id="input-nohp" class="form-control form-control-alternative{{ $errors->has('nohp') ? ' is-invalid' : '' }}" placeholder="" value="{{ $user->no_hp }}" required>
+                                            <input type="nohp" name="nohp" id="input-nohp" class="form-control form-control-alternative{{ $errors->has('nohp') ? ' is-invalid' : '' }}" placeholder="" value="{{ $user->no_hp }}" required readonly>
                                             @if ($errors->has('nohp'))
                                                 <span class="invalid-feedback" role="alert">
                       <strong>{{ $errors->first('nohp') }}</strong>
