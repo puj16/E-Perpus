@@ -12,9 +12,10 @@ class DashboardController extends Controller
 {
     public function dashboard() {
         if(Auth::User()->role == '1'){
-            $books = Buku::all(); 
+            $books = Buku::latest()->take(5)->get(); 
             $categories = Kategori::all();
-            return view('pembaca.dashboard', compact('books', 'categories'));
+            $user = Auth::user();
+            return view('pembaca.dashboard', compact('books', 'categories','user'));
         }elseif(Auth::User()->role=='0'){
             $user=Auth::user();
             return view('admin.dashboard',compact('user')); 
@@ -23,4 +24,13 @@ class DashboardController extends Controller
             return redirect()->back();            }
 
     }
+
+    public function detail($kode_buku)
+    {
+        $book = Buku::where('kode_buku', $kode_buku)->firstOrFail(); // Menampilkan detail buku
+        $user = Auth::user();
+
+        return view('pembaca.bukuDashboard', compact('book', 'kode_buku', 'user'));
+    }
+
 }

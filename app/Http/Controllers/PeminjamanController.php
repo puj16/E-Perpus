@@ -17,13 +17,14 @@ class PeminjamanController extends Controller
     {
         $userNipNimNidn = Auth::user()->nip_nim_nidn;
         $categories = Kategori::all();
+        $user = Auth::user();
     
         // Ambil data buku yang dipinjam yang berelasi dengan peminjaman yang terkait dengan user yang sesuai
         $dipinjam = BukuDipinjam::whereHas('peminjaman', function ($query) use ($userNipNimNidn) {
             $query->where('nip_nidn_nim', $userNipNimNidn);
         })->with('peminjaman.buku')->get();
 
-        return view('pembaca.borrowedlist',compact('dipinjam','categories'));
+        return view('pembaca.borrowedlist',compact('dipinjam','categories','userNipNimNidn','user'));
     }
 
     public function store($kode)

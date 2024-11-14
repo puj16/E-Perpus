@@ -60,11 +60,11 @@
                                     <form action="{{route('penerbit.store')}}" method="POST">
                                         @csrf
                                         <div class="form-group mb-3">
-                                            <label for="id">ID Kategori<span class="text-danger">*</span></label>
+                                            <label for="id">ID Penerbit<span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="id" id="id" value="{{ $nextId }}" readonly>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="nama">Nama Kategori<span class="text-danger">*</span></label>
+                                            <label for="nama">Nama Penerbit<span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" name="nama_penerbit" id="nama_penerbit">
                                         </div>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -82,7 +82,7 @@
                        <div class="modal-dialog modal-dialog-centered">
                            <div class="modal-content">
                                <div class="modal-header">
-                                   <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kategori</h1>
+                                   <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Penerbit</h1>
                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                </div>
                                <div class="modal-body">
