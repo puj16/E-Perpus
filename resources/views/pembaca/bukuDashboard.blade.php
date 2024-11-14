@@ -44,7 +44,16 @@
                 </table>
                 <div class="buttons">
                     <a href="{{ route('pembaca.dashboard') }}" class="btn-back">Back</a>
-                    <button class="btn-borrow">Pinjam</button>
+                    @if($book->stok > 0)
+                    <!-- Jika stok lebih dari 0, tampilkan tombol pinjam -->
+                    <form action="{{ route('peminjaman.store', $book->kode_buku) }}" method="post" class="d-inline-block">
+                        @csrf
+                        <button class="btn-borrow">Pinjam</button>
+                    </form>
+                @else
+                    <!-- Jika stok 0, tombol dinonaktifkan -->
+                    <button class="btn-disabled" disabled>Pinjam</button>
+                @endif
                 </div>
             </div>
         </div>
