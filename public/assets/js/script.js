@@ -137,15 +137,15 @@ menuBar.addEventListener('click', function () {
 })
 
 //profile dropdown
-const profile = document.querySelector('nav .profile');
-const userProfile = profile.querySelector('.username');
-const dropdownProfile = profile.querySelector('.profile-link');
-const iconRight = userProfile.querySelector('.icon-right');
+// const profile = document.querySelector('nav .profile');
+// const userProfile = profile.querySelector('.username');
+// const dropdownProfile = profile.querySelector('.profile-link');
+// const iconRight = userProfile.querySelector('.icon-right');
 
-userProfile.addEventListener('click', function(){
-    dropdownProfile.classList.toggle('show');
-    iconRight.classList.toggle('rotate');
-});
+// userProfile.addEventListener('click', function(){
+//     dropdownProfile.classList.toggle('show');
+//     iconRight.classList.toggle('rotate');
+// });
 
 window.addEventListener('click', function(e) {
     // Check if the click is outside of the userProfile (and its children) and dropdownProfile
