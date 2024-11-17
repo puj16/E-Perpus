@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class PeminjamanController extends Controller
 {
@@ -91,49 +93,6 @@ class PeminjamanController extends Controller
             return redirect()->back()->with('message', 'Stok buku tidak mencukupi!');
         }
     }
-
-    
-
-    
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
     
     public function show()
 {
@@ -177,4 +136,51 @@ class PeminjamanController extends Controller
         
 
     
-}
+
+    public function perpanjangan(Request $request, $id)
+    {
+        $userNipNimNidn = Auth::user()->nip_nim_nidn;
+        
+        // Cari data peminjaman berdasarkan ID dan pastikan user memiliki hak akses
+        $peminjaman = Peminjaman::where('id', $id)
+            ->where('nip_nidn_nim', $userNipNimNidn)
+            ->first();
+    
+        if (!$peminjaman) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data peminjaman tidak ditemukan.',
+            ]);
+        }
+    
+        // Periksa apakah peminjaman sudah diperpanjang
+        if ($peminjaman->status_perpanjangan === 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Anda sudah melakukan perpanjangan peminjaman. Perpanjangan hanya dapat dilakukan sekali.',
+            ]);
+        }
+    
+        // Tambahkan 7 hari pada tanggal kembali
+    $tglKembali = Carbon::parse($peminjaman->tgl_kembali)->addDays(7)->startOfDay();
+
+   $peminjaman->tgl_kembali = $tglKembali;        
+   $peminjaman->status_perpanjangan = 1; // Set status menjadi 1
+        $peminjaman->save();
+    
+        // Log setelah penyimpanan
+        if ($peminjaman->status_perpanjangan === 1) {
+            Log::info('Status perpanjangan berhasil diubah.');
+            Log::info('Tanggal kembali setelah perpanjangan: ' . $peminjaman->tgl_kembali);
+        } else {
+            Log::error('Gagal mengubah status perpanjangan.');
+        }
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Perpanjangan peminjaman berhasil.',
+            'new_tgl_kembali' => $peminjaman->tgl_kembali->format('Y-m-d'),
+        ]);
+        
+    }
+}    

@@ -18,6 +18,7 @@ class Peminjaman extends Model
         'buku_kode',
         'tgl_pinjam',
         'tgl_kembali',
+        'status_perpanjangan',
     ];
 
     /**

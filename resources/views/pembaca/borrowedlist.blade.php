@@ -40,29 +40,36 @@
                     <p>Tanggal Kembali: {{ $tglKembali }}</p>
                     
                     <!-- Dropdown Button -->
-                    <div class="dropdown">
-                        <button onclick="toggleDropdown({{ $loop->index }})" class="dropdown-toggle">
-                            &#x22EE; <!-- Icon titik tiga vertikal -->
-                        </button>
-                        <div id="dropdown-{{ $loop->index }}" class="dropdown-menu" style="display: none;">
-                            <a href="#" onclick="event.preventDefault(); openModal({{ $pinjam->id }});">
-                                Perpanjangan Peminjaman
-                            </a>
-
-                            <a href="#" onclick="event.preventDefault(); openModal({{ $pinjam->id }});">
-                            Pengembalian
-                        </a>
+                    <div id="dropdown">
+                    <button onclick="toggleDropdown({{ $loop->index }})" class="dropdown-toggle">&#x22EE;</button>
+                    <div id="dropdown-{{ $loop->index }}" class="dropdown-menu">
+                    <a href="#" onclick="event.preventDefault(); openModal('perpanjang-{{ $pinjam->id }}');">
+                        Perpanjangan Peminjaman
+                    </a>
+                    <a href="#" onclick="event.preventDefault(); openModal('{{ $pinjam->id }}');">
+                        Pengembalian
+                    </a>
+                </div>
+                </div>
+                </div>
                     </div>
+            
+
+            <!-- Modal Konfirmasi Perpanjangan -->
+            <div id="modal-perpanjang-{{ $pinjam->id }}" class="modal">
+                <div class="modal-content">
+                    <p>Yakinkan memperpanjang peminjaman?</p>
+                    <button onclick="extendLoan({{ $pinjam->id }})">Iya</button>
+                    <button onclick="closeModal('perpanjang-{{ $pinjam->id }}')">Tidak</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal Konfirmasi pengembalian-->
-        <div id="modal-{{ $pinjam->id }}" class="modal">
-            <div class="modal-content">
-                <p>Apakah Anda yakin ingin mengembalikan buku?</p>
-                <button onclick="returnBook({{ $pinjam->id }})">Ya</button>
-                <button onclick="closeModal({{ $pinjam->id }})">Tidak</button>
+            <!-- Modal Konfirmasi Pengembalian -->
+            <div id="modal-{{ $pinjam->id }}" class="modal">
+                <div class="modal-content">
+                    <p>Apakah Anda yakin ingin mengembalikan buku?</p>
+                    <button onclick="returnBook({{ $pinjam->id }})">Ya</button>
+                    <button onclick="closeModal({{ $pinjam->id }})">Tidak</button>
                 </div>
             </div>
         @endforeach
@@ -86,18 +93,27 @@
 
     function openModal(id) {
     const modal = document.getElementById('modal-' + id);
-    modal.style.display = 'flex'; // Set display to flex to center it
+    if (!modal) {
+        const perpanjangModal = document.getElementById('modal-perpanjang-' + id);
+        if (perpanjangModal) {
+            perpanjangModal.style.display = 'flex';
+        }
+    } else {
+        modal.style.display = 'flex';
+    }
 }
+
 
 function closeModal(id) {
     const modal = document.getElementById('modal-' + id);
     modal.style.display = 'none';
 }
-// script pengembalian
-async function returnBook(id) {
-    const modal = document.getElementById('modal-' + id);
+
+   // Script perpanjangan peminjaman
+   async function extendLoan(id) {
+    const modal = document.getElementById('modal-perpanjang-' + id);
     try {
-        const response = await fetch(`/pengembalian/${id}`, {
+        const response = await fetch(`/perpanjangan/${id}`, {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -108,30 +124,65 @@ async function returnBook(id) {
 
         const result = await response.json();
         if (result.success) {
-            // Hapus elemen buku dari daftar
-            const bookElement = document.getElementById('book-' + id);
-            if (bookElement) {
-                bookElement.remove();
-            }
+            // Pastikan data tanggal sudah diperoleh dari server
+            const formattedDate = new Date(result.new_tgl_kembali).toISOString().split('T')[0];
 
-            // Periksa apakah semua buku sudah dikembalikan
-            if (document.querySelectorAll('.book').length === 0) {
-                const booksContainer = document.querySelector('.books');
-                booksContainer.innerHTML = '<p>Tidak ada buku yang dipinjam saat ini.</p>';
+            // Update DOM secara langsung
+            const bookElement = document.querySelector(`#book-${id} p`);
+            if (bookElement) {
+                bookElement.textContent = `Tanggal Kembali: ${formattedDate}`;
             }
 
             // Tampilkan notifikasi sukses
-            showNotification('Buku berhasil dikembalikan!', 'success');
+            showNotification(result.message, 'success');
         } else {
-            showNotification('Gagal mengembalikan buku: ' + result.message, 'danger');
+            showNotification(result.message, 'danger');
         }
     } catch (error) {
-        showNotification('Terjadi kesalahan saat mengembalikan buku.', 'danger');
+        showNotification('Terjadi kesalahan saat memperpanjang peminjaman.', 'danger');
         console.error('Fetch Error:', error);
     } finally {
-        closeModal(id); // Tutup modal
+        closeModal('perpanjang-' + id);
     }
 }
+
+
+    // Script pengembalian buku
+    async function returnBook(id) {
+        const modal = document.getElementById('modal-' + id);
+        try {
+            const response = await fetch(`/pengembalian/${id}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                const bookElement = document.getElementById('book-' + id);
+                if (bookElement) {
+                    bookElement.remove();
+                }
+
+                if (document.querySelectorAll('.book').length === 0) {
+                    const booksContainer = document.querySelector('.books');
+                    booksContainer.innerHTML = '<p>Tidak ada buku yang dipinjam saat ini.</p>';
+                }
+
+                showNotification('Buku berhasil dikembalikan!', 'success');
+            } else {
+                showNotification('Gagal mengembalikan buku: ' + result.message, 'danger');
+            }            
+        } catch (error) {
+            showNotification('Terjadi kesalahan saat mengembalikan buku.', 'danger');
+            console.error('Fetch Error:', error);
+        } finally {
+            closeModal(id);
+        }
+    }
 
 function showNotification(message, type = 'danger') {
     const notification = document.getElementById('notification');
