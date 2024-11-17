@@ -13,6 +13,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\ProfilAdminController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\ProfilPembacaController;
+use App\Models\Pengembalian;
 
 Route::get('registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasi_post', [AuthController::class, 'registrasi_post'])->name('registrasi_post');
@@ -56,6 +57,12 @@ Route::group(['middleware'=>'pustakawan'], function(){
 
         Route::get('tampil-pembaca', [PembacaController::class, 'index'])->name('pembaca.show');
         Route::delete('/pembaca/delete/{id}', [PembacaController::class, 'destroy'])->name('pembaca.delete');
+        Route::get('peminjaman', [PeminjamanController::class, 'show'])->name('peminjaman.show');
+        Route::get('pinjam/export/', [PeminjamanController::class, 'export'])->name('peminjaman.export');
+        Route::get('pinjam/report/', [PeminjamanController::class, 'report'])->name('peminjaman.report');
+        Route::get('pengembalian', [PengembalianController::class, 'show'])->name('pengembalian.show');
+        Route::get('kembali/export/', [PengembalianController::class, 'export'])->name('pengembalian.export');
+
 });
 
     Route::group(['middleware'=>'member'], function(){

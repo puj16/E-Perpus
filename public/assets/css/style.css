@@ -119,6 +119,18 @@ li{
     background: var(--k);
 }.btn-blue{
     background: var(--b);
+}.btn-blue1{
+    background: #5E50F9;
+    border: none;
+    border-radius: 5px;
+    color: var(--e);
+    padding: 6px 15px;
+}.btn-green{
+    background: #46c35f;
+    border: none;
+    border-radius: 5px;
+    color: var(--e);
+    padding: 6px 15px;
 }.btn-disabled {
     background-color: #d3d3d3; /* Warna abu-abu */
     color: #fff; /* Warna teks */
@@ -292,14 +304,14 @@ main {
     /* Hapus max-height dan overflow-y */
     flex-grow: 1;
     overflow-y: auto;
-    padding-bottom: 70px;
+    /* padding-bottom: 70px; */
 
 }
 
 main .box-info {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	grid-gap: 80px;
+	grid-gap: 20px;
 	margin-top: 36px;
     margin-right: 36px;
 }main .box-info li {
@@ -325,6 +337,37 @@ main .box-info {
     text-align: center;
 }
 
+
+main .chart-container {
+	display: flex;
+	flex-wrap: nowrap; /* Pastikan elemen tidak membungkus */
+	grid-gap: 24px;
+	margin: 24px 0;
+	padding: 40px 40px;
+	color: var(--g);
+	width: 100%;
+}
+
+main .chart-container > div {
+	border-radius: 20px;
+	background: var(--e);
+	padding: 24px;
+	overflow-x: auto;
+	width: 50%; /* Pastikan setiap chart memiliki lebar 50% */
+	box-sizing: border-box; /* Pastikan padding tidak melebihi lebar */
+}
+
+main .chart-container .head {
+	display: flex;
+	align-items: left;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+#peminjamanChart {
+    max-width: 100%; /* Maksimal lebar adalah 100% dari parent */
+    max-height: 100%; /* Maksimal tinggi adalah 100% dari parent */
+     /* Mencegah elemen inline-block */
+}
 main .table-data {
 	display: flex;
 	flex-wrap: wrap;
@@ -422,11 +465,17 @@ main .table-data > div {
 
 /* footer */
 footer{
-    padding-top: 30px ;
     display: flex;
-    bottom: 0;
-    position: fixed;
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--e);
+    color: white;
+    /* padding: 20px; */
+    padding-right: 95px;
+    padding-left: 85px;
+    text-align: left;
+    margin-top: auto; 
+
 }footer div{
     background: var(--e);
     width: 100%;
@@ -465,7 +514,10 @@ body {
     flex-direction: column;
     min-height: 100vh; /* Pastikan body memenuhi tinggi viewport */
 }
-
+.content{
+    flex-grow: 1;
+    height: 100%;
+}
 .main-content {
     flex-grow: 1; /* Konten utama mengisi ruang yang tersisa */
 }
@@ -950,4 +1002,18 @@ body {
         width: 30%; /* Pada layar yang lebih besar, buat kolom lebih kecil */
         text-align: left; /* Kembalikan ke posisi kiri */
     }
+}
+
+.status-box{
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+.status-returned{
+    background: #fdf5dd;
+    color: #cfa00c;
+}
+.status-not-returned{
+    background: #fddddd;
+    color: #cf0c0c;
 }

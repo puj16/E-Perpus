@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PeminjamanExport;
 use App\Models\Buku;
 use App\Models\BukuDipinjam;
 use App\Models\Kategori;
 use App\Models\Peminjaman;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -88,9 +92,89 @@ class PeminjamanController extends Controller
         }
     }
 
+    
+
+    
 
 
 
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    public function show()
+{
+    $data = Peminjaman::all()->map(function ($peminjaman) {
+        $peminjaman->status = $peminjaman->id && DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
+            ? 'Sudah Dikembalikan'
+            : 'Belum Dikembalikan';
+        return $peminjaman;
+    });
+
+    $user = Auth::user();
+
+    return view('admin.peminjaman', [
+        'dataPeminjaman' => $data,
+        'user' => $user
+    ]);
+    }
+        public function export() 
+        {
+            return Excel::download(new PeminjamanExport, 'Lap.Peminjaman('. date('Y-m-d H:i:s').').'.'xlsx');
+        }
+        public function report()
+        {
+            $data = Peminjaman::all()->map(function ($peminjaman) {
+                $peminjaman->status = $peminjaman->id && DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
+                    ? 'Sudah Dikembalikan'
+                    : 'Belum Dikembalikan';
+                return $peminjaman;
+            });
+        
+            // Convert the collection to an array
+            $dataArray = $data->toArray();
+        
+            // Load the view with the data as an array
+            $pdf = Pdf::loadView('admin.reportPeminjaman', ['dataPeminjaman' => $dataArray]);
+        
+            // Download the PDF
+            return $pdf->download('Lap.Peminjaman(' . date('Y-m-d H:i:s') . ').pdf');
+            // return $pdf->stream();
+        }
+        
 
     
 }

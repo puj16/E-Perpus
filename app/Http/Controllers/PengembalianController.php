@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PengembalianExport;
 use App\Models\BukuDipinjam;
 use App\Models\Peminjaman;
 use App\Models\Pengembalian;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Auth;
 
 class PengembalianController extends Controller
 {
@@ -33,5 +36,17 @@ class PengembalianController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
+    }
+    public function show(){
+        $data = Pengembalian::all();
+        $user = Auth::user();
+        return view ('admin.pengembalian', [
+            'dataPengembalian' => $data,
+            'user' =>$user
+        ]);
+    }
+    public function export() 
+    {
+        return Excel::download(new PengembalianExport, 'Lap.Pengembalian('. date('Y-m-d H:i:s').').'.'xlsx');
     }
 }    

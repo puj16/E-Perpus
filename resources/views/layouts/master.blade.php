@@ -13,6 +13,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -24,14 +25,14 @@
         <section id="sidebar">
             <a href="#" class="logo"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
             <ul class="side-menu">
-                <li ><a href={{ '/pustakawan/dashboard' }} ><i class='bx bx-home-alt icon'></i>Dashboard</a></li>
+                <li ><a href="{{ '/pustakawan/dashboard' }}" ><i class='bx bx-home-alt icon'></i>Dashboard</a></li>
                 <li><a href="{{ '/tampil-pembaca' }}"><i class='bx bx-book-reader icon'></i> Data Member</a></li>
                 <li><a href="{{'/tampil-kategori'}}"><i class='bx bx-list-ul icon'></i>Data Kategori</a></li>
                 <li><a href="{{'/tampil-penulis'}}"><i class='bx bxs-edit icon'></i>Data Penulis</a></li>
                 <li><a href="{{'/tampil-penerbit'}}"><i class='bx bxs-paint icon'></i>Data Penerbit</a></li>
                 <li><a href="{{'/buku'}}"><i class='bx bxs-book-open icon'></i>Data Buku</a></li>
-                <li><a href=""><i class='bx bx-upload icon'></i>Peminjaman</a></li>
-                <li><a href=""><i class='bx bx-download icon'></i>Pengembalian</a></li>
+                <li><a href="{{ '/peminjaman' }}"><i class='bx bx-upload icon'></i>Peminjaman</a></li>
+                <li><a href="{{ '/pengembalian' }}"><i class='bx bx-download icon'></i>Pengembalian</a></li>
             </ul>
         </section>
        <!-- sidebar section end -->
@@ -59,9 +60,9 @@
             <!-- navbar section end -->
             <!-- main section start -->
             <main>
-
+                <div class="content">
               @yield('content')
-                
+            </div>
 
                 <!-- footer section start -->
                 <footer>
