@@ -25,8 +25,8 @@
                 {{ $user->name }}<i class='bx bx-chevron-right icon-right'></i> 
             </button>
             <ul class="profile-link">
-                <li><a href="{{ url('history') }}"><i class='bx bx-history icon-right'></i>History</a></li>
                 <li><a href="{{ url('profilePembaca') }}"><i class='bx bx-user-circle icon-right'></i>Profil</a></li>
+                <li><a href="{{ url('history') }}"><i class='bx bx-history icon-right'></i>History</a></li>
                 <li><a href="{{ route('logout') }}"><i class='bx bx-log-out icon'></i>Log-Out</a></li>
             </ul>
         </div>

@@ -22,7 +22,7 @@
                 <a href="{{ route('katalog.detail', ['kode_buku' => $return->peminjaman->buku->kode_buku, 'origin' => 'history']) }}">
                     <img src="{{ asset('storage/assets/covers/' . $return->peminjaman->buku->cover) }}" alt="Book cover of {{ $return->peminjaman->buku->judul }}">
                     <h3>{{ $return->peminjaman->buku->judul }}</h3>
-                    <p>{{ $return->peminjaman->buku->penerbit->nama_penerbit }}</p>
+                    <p>Tanggal Kembali: {{ $return->tgl_dikembalikan }}</p>
                 </a>
             </div>
         @endforeach
