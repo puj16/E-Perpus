@@ -7,6 +7,7 @@ use App\Models\Buku;
 use App\Models\BukuDipinjam;
 use App\Models\Kategori;
 use App\Models\Peminjaman;
+use App\Models\Pengembalian;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -182,5 +183,28 @@ class PeminjamanController extends Controller
             'new_tgl_kembali' => $peminjaman->tgl_kembali->format('Y-m-d'),
         ]);
         
+    }
+
+    public function history()
+    {
+        $userNipNimNidn = Auth::user()->nip_nim_nidn;
+
+        // Ambil pengembalian yang sudah selesai dan hanya untuk pengguna yang sedang login
+        $returns = Pengembalian::with(['peminjaman.buku', 'peminjaman.user'])
+            ->whereNotNull('tgl_dikembalikan')
+            ->whereHas('peminjaman', function ($query) use ($userNipNimNidn) {
+                // Filter berdasarkan nip_nim_nidn pengguna yang sedang login
+                $query->where('nip_nidn_nim', $userNipNimNidn);
+            })
+            ->orderBy('tgl_dikembalikan', 'desc')
+            ->get();
+
+            $groupedReturns = $returns->groupBy(function($item) {
+            return $item->peminjaman->buku->kode_buku;
+        });
+
+        $user = Auth::user();
+
+        return view('pembaca.history', compact('userNipNimNidn', 'groupedReturns', 'user'));
     }
 }    

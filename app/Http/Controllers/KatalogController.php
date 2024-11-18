@@ -54,11 +54,13 @@ class KatalogController extends Controller
         return view('pembaca.katalog', compact('books', 'categories', 'user'));
     }
     
-    public function show($kode_buku)
+    public function show($kode_buku, Request $request)
     {
         // Cari buku berdasarkan kode_buku
         $book = Buku::where('kode_buku', $kode_buku)->firstOrFail();
         $user = Auth::user();
+
+        $request->session()->put('origin', $request->input('origin', 'katalog'));
 
         // Kembalikan view 'katalog.detail' dengan data buku
         return view('pembaca.detailBuku', compact('book', 'kode_buku', 'user'));

@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/profil.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
@@ -26,6 +25,7 @@
                 {{ $user->name }}<i class='bx bx-chevron-right icon-right'></i> 
             </button>
             <ul class="profile-link">
+                <li><a href="{{ url('history') }}"><i class='bx bx-history icon-right'></i>History</a></li>
                 <li><a href="{{ url('profilePembaca') }}"><i class='bx bx-user-circle icon-right'></i>Profil</a></li>
                 <li><a href="{{ route('logout') }}"><i class='bx bx-log-out icon'></i>Log-Out</a></li>
             </ul>

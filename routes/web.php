@@ -77,6 +77,7 @@ Route::group(['middleware'=>'pustakawan'], function(){
         Route::get('/borrowedlist', [PeminjamanController::class, 'index'])->name('pembaca.pinjam');
         Route::post('/pengembalian/{id}', [PengembalianController::class, 'store'])->name('pengembalian.store');
         Route::post('/perpanjangan/{id}', [PeminjamanController::class, 'perpanjangan'])->name('peminjaman.perpanjangan');
+        Route::get('history', [PeminjamanController::class, 'history'])->name('pembaca.history');
     });
     
     // Route Katalog

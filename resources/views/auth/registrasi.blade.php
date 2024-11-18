@@ -31,7 +31,7 @@
                 <form action="{{ route('registrasi_post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="text" value="{{ old('nip_nim_nidn') }}" name="nip_nim_nidn" placeholder="NIP, NIM, atau NIDN" required>
-                    <input type="text" value="{{ old('email') }}" name="email" placeholder="Emil" required>
+                    <input type="text" value="{{ old('email') }}" name="email" placeholder="Email" required>
                     <input type="text" value="{{ old('name') }}" name="name" placeholder="Username" required>
                     <input type="password" value="{{ old('password') }}" name="password" placeholder="Password" required>
                     <input type="text" value="{{ (old('no_hp')) }}" name="no_hp" placeholder="No. Handphone" required>

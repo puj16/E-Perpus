@@ -5,7 +5,8 @@
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<div class="main">
+<link href="{{ asset('assets/css/profil.css') }}" rel="stylesheet"> <!-- Pastikan link ke CSS lokal juga ada -->
+<div class="mainnn">
     <h1>Katalog Perpustakaan</h1>
     <div>
         @if(session()->has('message'))
@@ -60,7 +61,7 @@
                     </tr>
                 </table>
                 <div class="buttons">
-                    <a href="{{ route('katalog.index') }}" class="btn-back">Back</a>
+                    <a href="{{ session('origin') === 'dashboard' ? route('pembaca.dashboard') : (session('origin') === 'katalog' ? route('katalog.index') : route('pembaca.history')) }}" class="btn-back">Back</a>
                     
                     @if($book->stok > 0)
                         <!-- Jika stok lebih dari 0, tampilkan tombol pinjam -->

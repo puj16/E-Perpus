@@ -138,7 +138,7 @@ li{
     border: none;
     cursor: not-allowed; /* Menunjukkan bahwa tombol tidak bisa diklik */
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 50px;
 }
 
 /* content */

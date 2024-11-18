@@ -5,13 +5,13 @@
 @section('content')
     <h1>Koleksi Terbaru</h1>
     <div class="books">
-        @foreach ($books as $book)
+            @foreach ($books as $book)
             <div class="book">
-                <a href="{{ route('pembaca.detail', $book->kode_buku) }}">
-                    <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->judul }}">
-                    <h4>{{ $book->judul }}</h4>
-                </a>
-            </div>
+            <a href="{{ route('katalog.detail', ['kode_buku' => $book->kode_buku, 'origin' => 'dashboard']) }}">
+                <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->judul }}">
+                <h4>{{ $book->judul }}</h4>
+            </a>
+        </div>
         @endforeach
     </div>
 <div class="study-slogan">

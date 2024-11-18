@@ -34,13 +34,13 @@
         <p>Tidak ada buku yang ditemukan.</p>
     @else
         @foreach ($books as $book)
-            <div class="book">
-                <a href="{{ route('katalog.detail', $book->kode_buku) }}">
-                    <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->cover }}">
-                    <h3>{{ $book->judul }}</h3>
-                    <p>{{ $book->penerbit->nama_penerbit }}</p>
-                </a>
-            </div>
+        <div class="book">
+            <a href="{{ route('katalog.detail', ['kode_buku' => $book->kode_buku, 'origin' => 'katalog']) }}">
+                <img src="{{ asset('storage/assets/covers/' . $book->cover) }}" alt="Book cover of {{ $book->cover }}">
+                <h3>{{ $book->judul }}</h3>
+                <p>{{ $book->penerbit->nama_penerbit }}</p>
+            </a>
+        </div>
         @endforeach
     @endif
 </div>

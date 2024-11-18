@@ -20,4 +20,9 @@ class Pengembalian extends Model
     {
         return $this->belongsTo(Peminjaman::class, 'id_pinjam');
     }
+
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'buku_kode', 'kode_buku');
+    }
 }
