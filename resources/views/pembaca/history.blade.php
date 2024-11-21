@@ -14,7 +14,14 @@
 <div class="history-container">
     @foreach ($groupedReturns as $date => $returns) <!-- Kelompokkan berdasarkan tanggal -->
         <div class="history-day-card">
-            <h2>{{ \Carbon\Carbon::parse($date)->diffForHumans() }}</h2>
+        <h2>
+            @if (\Carbon\Carbon::parse($date)->isToday())
+                Today
+            @else
+                {{ \Carbon\Carbon::parse($date)->diffForHumans() }}
+            @endif
+        </h2>
+
             @foreach ($returns as $return) <!-- Tampilkan setiap buku dalam satu card -->
                 <div class="book-card">
                     <a href="{{ route('katalog.detail', ['kode_buku' => $return->peminjaman->buku->kode_buku, 'origin' => 'history']) }}">
