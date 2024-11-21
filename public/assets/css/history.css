@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Roboto", sans-serif;
+    /* margin: 0;
+    padding: 0; */
+
+}
+
+:root{
+  --a: #323FA7;
+  --b: #242D8B; 
+  --c: #312E81;  
+  --d: #7577F2;  
+  --e: #FFFFFF;  
+  --f: #FB923C;  
+  --g: #334155;  
+  --h: #64748B;  
+  --i: #1D4ED8;  
+  --j: #EFF3FF;  
+  --k: #C0110F; 
+  --l: #eee;  
+  --sidebar-width:323px;  
+}
+
+.history-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--j); /* Warna putih transparan */
+    border-radius: 10px;
+}
+
+/* Card untuk setiap hari */
+.history-day-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Judul hari */
+.history-day-card h2 {
+    font-size: 14px;
+    margin: 0;
+    color: var(--f);
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 5px;
+    text-align: right;
+    font-weight: normal;
+}
+
+.book-card {
+    display: flex;
+    align-items: center; /* Posisi item sejajar di tengah secara vertikal */
+    gap: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.book-card img {
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0; /* Agar cover buku tidak menyusut */
+}
+
+.book-card-content {
+    display: flex;
+    flex-direction: row; /* Menjaga gambar dan konten berada sejajar secara horizontal */
+    gap: 15px;
+    align-items: center;
+    flex: 1;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column; /* Mengatur judul dan tanggal kembali secara vertikal */
+    gap: 5px; /* Memberikan jarak antara judul dan tanggal kembali */
+}
+
+.book-card-content h3 {
+    font-size: 1rem;
+    color: var(--a);
+    margin: 0;
+}
+
+.book-card-content p {
+    font-size: 0.9rem;
+    color: var(--a);
+    margin: 0;
+}
+
+.book-card a {
+    text-decoration: none; /* Menghapus garis bawah */
+    color: inherit; /* Warna teks mengikuti warna default */
+    display: flex; /* Pastikan konten fleksibel */
+    width: 100%; /* Menggunakan seluruh lebar */
+}

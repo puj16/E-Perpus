@@ -188,23 +188,26 @@ class PeminjamanController extends Controller
     public function history()
     {
         $userNipNimNidn = Auth::user()->nip_nim_nidn;
-
+    
         // Ambil pengembalian yang sudah selesai dan hanya untuk pengguna yang sedang login
         $returns = Pengembalian::with(['peminjaman.buku', 'peminjaman.user'])
             ->whereNotNull('tgl_dikembalikan')
             ->whereHas('peminjaman', function ($query) use ($userNipNimNidn) {
-                // Filter berdasarkan nip_nim_nidn pengguna yang sedang login
+                // Filter berdasarkan nip_nidn_nim pengguna yang sedang login
                 $query->where('nip_nidn_nim', $userNipNimNidn);
             })
             ->orderBy('tgl_dikembalikan', 'desc')
             ->get();
-
-            $groupedReturns = $returns->groupBy(function($item) {
-            return $item->peminjaman->buku->kode_buku;
+    
+        // Kelompokkan pengembalian berdasarkan tanggal pengembalian
+        $groupedReturns = $returns->groupBy(function($item) {
+            return Carbon::parse($item->tgl_dikembalikan)->toDateString(); // Kelompokkan berdasarkan tanggal saja
         });
-
+    
         $user = Auth::user();
-
+    
         return view('pembaca.history', compact('userNipNimNidn', 'groupedReturns', 'user'));
     }
+    
+
 }    
