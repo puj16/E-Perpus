@@ -29,7 +29,7 @@
                             <img src="{{ asset('storage/assets/covers/' . $return->peminjaman->buku->cover) }}" alt="Book cover">
                             <div class="book-info">
                             <h3>{{ $return->peminjaman->buku->judul }}</h3>
-                            <p>Tanggal Kembali: {{ $return->tgl_dikembalikan }}</p>
+                            <p>Tanggal Dikembalikan: {{ $return->tgl_dikembalikan }}</p>
                             </div>
                         </div>
                     </a>
