@@ -63,7 +63,6 @@
                 <td>{{ $data->stok }}</td>
                 <td>
                     <a href="" class="btn-yellow action" data-bs-toggle="modal" data-bs-target="#editModal{{$data->kode_buku}}"><i class='bx bx-edit-alt'></i></a>
-                    <a href="" class="btn-blue action" data-bs-toggle="modal" data-bs-target="#editModal{{$data->kode_buku}}"><i class='bx bx-show-alt'></i></a><br>
                     <button class="btn-red action" data-bs-toggle="modal" data-bs-target="#deleteModal{{$data->kode_buku}}"><i class='bx bx-trash' ></i></button>
                 </td>
             </tr>

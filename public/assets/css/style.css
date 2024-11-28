@@ -1002,6 +1002,67 @@ h1:first-of-type {
     z-index: 9999;
 }
 
+.modal-header {
+    background-color: var(--a);
+    color: var(--j);
+}
+
+.btn-reset {
+    color: var(--a);
+
+}
+
+.nav-pills .nav-link {
+    border: 1px solid var(--a);
+    margin-right: 5px;
+    color: var(--a);
+    border-radius: 50px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--a);
+    color: var(--e);
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border-width: 2px;
+}
+
+.btn-primary {
+    background-color: var(--f);
+    border-color: var(--f);
+    border-radius: 50px;
+}
+
+.btn-secondary {
+    background-color: var(--e);
+    border-color: var(--e);
+}
+
+.btn-shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.model-filter {
+    background-color: var(--a);
+
+}
+
+.tab-content {
+    background-color: var(--e);
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--a);
+}
+
+.border-primaryy{
+    border: 1px solid var(--a);
+}
 
 /* Responsive Adjustments */
 @media (min-width: 768px) {

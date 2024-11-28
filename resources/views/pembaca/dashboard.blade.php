@@ -3,7 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <h1>Koleksi Terbaru</h1>
+<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div class="mainnn">
+        <h1>Koleksi Terbaru</h1>
+    </div>
     <div class="books">
         @foreach ($books as $book)
             <div class="book">
@@ -15,7 +19,7 @@
         @endforeach
     </div>
 
-    <!-- Carousel for Slogan -->
+<!-- Carousel for Slogan -->
 <div id="carouselExampleCaptions" class="carousel slide study-slogan" data-bs-ride="carousel">
     <!-- Carousel Indicators -->
     <div class="carousel-indicators">
@@ -33,7 +37,7 @@
                     <h2>Study anytime, <br>wherever you are</h2>
                     <p>Akses perpustakaan kampus dari mana saja, kapan saja. Belajar jadi lebih mudah dan fleksibel.</p>
                 </div>
-                <div class="image-content flex-fill">
+                <div class="image-content mt-4">
                     <img src="{{ asset('assets/images/dash.svg') }}" class="img-fluid" alt="Study Anytime">
                 </div>
             </div>
@@ -66,20 +70,22 @@
         </div>
     </div>
 
+    <!-- Navigation Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
-        <!-- Navigation Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 
     <!-- Kategori Buku -->
-    <h1>Kategori Buku</h1>
+    <div class="mainnn">
+        <h1>Kategori Buku</h1>
+    </div>
     <div class="category-slogan">
         <img src="{{ asset('assets/images/roket.svg') }}" alt="Study Anytime">
         <div class="category-carousel">

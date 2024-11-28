@@ -95,46 +95,110 @@ class PeminjamanController extends Controller
         }
     }
     
-    public function show()
+    public function show(Request $request)
+    {
+        // Query awal untuk mendapatkan data peminjaman
+        $query = Peminjaman::query();
+    
+        // Filter berdasarkan tanggal mulai dan akhir
+        if ($request->has('start_date') && $request->start_date) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+    
+        if ($request->has('end_date') && $request->end_date) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+    
+        // Filter berdasarkan bulan dan tahun
+        if ($request->has('month') && $request->month) {
+            $query->whereMonth('created_at', $request->month);
+        }
+    
+        if ($request->has('year') && $request->year) {
+            $query->whereYear('created_at', $request->year);
+        }
+    
+        // Ambil data setelah filter diterapkan
+        $data = $query->get()->map(function ($peminjaman) {
+            $peminjaman->status = DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
+                ? 'Sudah Dikembalikan'
+                : 'Belum Dikembalikan';
+            return $peminjaman;
+        });
+    
+        // Data user yang sedang login
+        $user = Auth::user();
+    
+        // Return ke view dengan data yang sudah difilter
+        return view('admin.peminjaman', [
+            'dataPeminjaman' => $data,
+            'user' => $user,
+            'request' => $request
+        ]);
+    }
+    public function export(Request $request)
+    {
+        $query = Peminjaman::query();
+    
+        // Filter berdasarkan tanggal mulai dan akhir
+        if ($request->has('start_date') && $request->start_date) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+    
+        if ($request->has('end_date') && $request->end_date) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+    
+        // Filter berdasarkan bulan dan tahun
+        if ($request->has('month') && $request->month) {
+            $query->whereMonth('created_at', $request->month);
+        }
+    
+        if ($request->has('year') && $request->year) {
+            $query->whereYear('created_at', $request->year);
+        }
+    
+        // Ambil data hasil filter
+        $data = $query->get();
+    
+        // Kirim data hasil filter ke PeminjamanExport
+        return Excel::download(new PeminjamanExport($data), 'Lap.Peminjaman(' . date('Y-m-d H:i:s') . ').xlsx');
+    }
+
+public function report(Request $request)
 {
-    $data = Peminjaman::all()->map(function ($peminjaman) {
-        $peminjaman->status = $peminjaman->id && DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
+    $query = Peminjaman::query();
+
+    // Filter berdasarkan tanggal mulai dan akhir
+    if ($request->has('start_date') && $request->start_date) {
+        $query->whereDate('created_at', '>=', $request->start_date);
+    }
+
+    if ($request->has('end_date') && $request->end_date) {
+        $query->whereDate('created_at', '<=', $request->end_date);
+    }
+
+    // Filter berdasarkan bulan dan tahun
+    if ($request->has('month') && $request->month) {
+        $query->whereMonth('created_at', $request->month);
+    }
+
+    if ($request->has('year') && $request->year) {
+        $query->whereYear('created_at', $request->year);
+    }
+
+    // Ambil data setelah filter diterapkan
+    $data = $query->get()->map(function ($peminjaman) {
+        $peminjaman->status = DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
             ? 'Sudah Dikembalikan'
             : 'Belum Dikembalikan';
         return $peminjaman;
     });
 
-    $user = Auth::user();
+    $pdf = Pdf::loadView('admin.reportPeminjaman', ['dataPeminjaman' => $data]);
 
-    return view('admin.peminjaman', [
-        'dataPeminjaman' => $data,
-        'user' => $user
-    ]);
-    }
-        public function export() 
-        {
-            return Excel::download(new PeminjamanExport, 'Lap.Peminjaman('. date('Y-m-d H:i:s').').'.'xlsx');
-        }
-        public function report()
-        {
-            $data = Peminjaman::all()->map(function ($peminjaman) {
-                $peminjaman->status = $peminjaman->id && DB::table('pengembalian')->where('id_pinjam', $peminjaman->id)->exists()
-                    ? 'Sudah Dikembalikan'
-                    : 'Belum Dikembalikan';
-                return $peminjaman;
-            });
-        
-            // Convert the collection to an array
-            $dataArray = $data->toArray();
-        
-            // Load the view with the data as an array
-            $pdf = Pdf::loadView('admin.reportPeminjaman', ['dataPeminjaman' => $dataArray]);
-        
-            // Download the PDF
-            return $pdf->download('Lap.Peminjaman(' . date('Y-m-d H:i:s') . ').pdf');
-            // return $pdf->stream();
-        }
-        
+    return $pdf->download('Lap.Peminjaman(' . date('Y-m-d H:i:s') . ').pdf');
+}        
 
     
 
