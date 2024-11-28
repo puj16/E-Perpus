@@ -181,5 +181,35 @@ class BukuController extends Controller
         return redirect('/tampil-buku')->with('error', 'Buku tidak ditemukan!!');
     }
 }
+public function detailDipinjam($kode_buku, Request $request)
+    {
+        // Cari buku berdasarkan kode_buku
+        $book = Buku::where('kode_buku', $kode_buku)->firstOrFail();
+        $user = Auth::user();
+
+        $request->session()->put('origin', $request->input('origin', 'katalog'));
+
+        // Kembalikan view 'katalog.detail' dengan data buku
+        return view('pembaca.detailBukuDipinjam', compact('book', 'kode_buku', 'user'));
+    }
+
+    public function bacaBuku($kode_buku, Request $request)
+    {
+        // Cari buku berdasarkan kode_buku
+        $book = Buku::where('kode_buku', $kode_buku)->firstOrFail();
+        
+        // Periksa apakah file buku tersedia
+        if (!$book->file_buku) {
+            return redirect()->route('katalog.index')->with('error', 'File buku tidak tersedia.');
+        }
+    
+        $filePath = asset('storage/assets/books/' . $book->file_buku);
+    
+        // Ambil data user yang sedang login
+        $user = Auth::user();
+    
+        // Kembalikan view khusus untuk membaca file PDF
+        return view('pembaca.bacaBuku', compact('book', 'filePath', 'user'));
+    }
 
 }

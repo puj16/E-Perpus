@@ -78,6 +78,8 @@ Route::group(['middleware'=>'pustakawan'], function(){
         Route::post('/pengembalian/{id}', [PengembalianController::class, 'store'])->name('pengembalian.store');
         Route::post('/perpanjangan/{id}', [PeminjamanController::class, 'perpanjangan'])->name('peminjaman.perpanjangan');
         Route::get('history', [PeminjamanController::class, 'history'])->name('pembaca.history');
+        Route::get('/borrowed/{kode_buku}', [BukuController::class, 'detailDipinjam'])->name('pembaca.dipinjam');
+        Route::get('/read-borrowed/{kode_buku}', [BukuController::class, 'bacaBuku'])->name('buku.baca');
     });
     
     // Route Katalog

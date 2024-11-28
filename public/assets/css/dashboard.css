@@ -54,6 +54,85 @@ body {
     flex-grow: 1; /* Membuat garis mengambil sisa ruang */
     background-color: var(--a); /* Mengatur warna garis */
 }
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile .username {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.profile .username img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+/* Dropdown menu profil */
+.profile .profile-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--e);
+    padding: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    width: 100px;
+    opacity:0 ;
+    pointer-events: none;
+    transition: all .3s ease;
+    z-index: 1000;
+}
+
+.profile .profile-link.show {
+    opacity: 1;
+    pointer-events: visible;
+    margin: 0 ;
+    top: 100%;
+}
+
+.profile .profile-link li {
+    list-style: none;
+}
+
+.profile .profile-link li a {
+    color: var(--a);
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.profile .profile-link li a:hover {
+    background-color: var(--f); /* Warna saat hover */
+}
+
+.header .user {
+    display: flex;
+    align-items: center;
+}
+.header .user i {
+    margin-right: 10px;
+}
 .books {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
