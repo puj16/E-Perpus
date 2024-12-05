@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-*{
+* {
     font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -11,25 +14,26 @@ body {
     background-image: url('../images/background.jpg');
     background-size: cover;
     background-position: center;
-    height: 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    background-attachment: fixed;
 }
 
-/* Layer biru transparan di atas background */
 .blue-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 71, 179, 0.7); /* Warna biru dengan transparansi */
-    z-index: 1; /* Layer ini ada di belakang konten login */
+    background-color: rgba(0, 71, 179, 0.7);
+    z-index: 1;
 }
 
-/* Mengatur container agar berada di atas layer biru */
 .login-container {
     display: flex;
     justify-content: space-between;
@@ -40,6 +44,7 @@ body {
     padding: 30px;
     position: relative;
     z-index: 2;
+    overflow: hidden; /* Menghindari konten keluar dari container */
 }
 
 /* Kiri: Logo dan Teks */
@@ -48,6 +53,7 @@ body {
     text-align: left;
     color: white;
     padding-right: 20px;
+    max-width: 50%; /* Membatasi lebar agar tidak terlalu besar */
 }
 
 .logo-container {
@@ -85,7 +91,7 @@ body {
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    width: 400px;  /* Pastikan lebar sesuai */
+    width: 400px;
     text-align: center;
 }
 
@@ -99,7 +105,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Style untuk input field */
 .login-box input {
     width: 100%;
     padding: 10px;
@@ -123,4 +128,80 @@ body {
 
 .login-box button:hover {
     background-color: #003399;
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        height: auto;
+    }
+
+    .left-side {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    .logo-container img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .text-container h1 {
+        font-size: 28px;
+    }
+
+    .text-container h2 {
+        font-size: 20px;
+    }
+
+    .right-side {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .login-box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container h1 {
+        font-size: 24px;
+    }
+
+    .text-container h2 {
+        font-size: 18px;
+    }
+
+    .logo-container img {
+        width: 80px;
+    }
+
+    .login-box {
+        padding: 20px;
+    }
+
+    .login-box button {
+        font-size: 14px;
+    }
+
+    .login-box input {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;  /* Membuat login box lebih lebar pada layar kecil */
+        padding: 15px;
+    }
+
+    .text-container h1 {
+        font-size: 22px;  /* Sesuaikan ukuran font pada perangkat yang lebih kecil */
+    }
 }

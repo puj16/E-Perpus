@@ -60,6 +60,7 @@ a {
 li {
     list-style: none;
 }
+/* Profil dan dropdown menu */
 .profile {
     position: relative;
     display: flex;
@@ -95,7 +96,7 @@ li {
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
     width: 100px;
-    opacity:0 ;
+    opacity: 0;
     pointer-events: none;
     transition: all .3s ease;
     z-index: 1000;
@@ -104,7 +105,7 @@ li {
 .profile .profile-link.show {
     opacity: 1;
     pointer-events: visible;
-    margin: 0 ;
+    margin: 0;
     top: 100%;
 }
 
@@ -126,16 +127,32 @@ li {
     background-color: var(--f); /* Warna saat hover */
 }
 
+/* Profil user */
 .header .user {
     display: flex;
     align-items: center;
 }
+
 .header .user i {
     margin-right: 10px;
 }
+
+/* Responsif untuk layar kecil (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .profile .username {
+        display: flex; /* Pastikan elemen tetap tampil */
+        font-size: 14px; /* Sesuaikan ukuran font */
+    }
+
+    .profile .username img {
+        width: 35px; /* Sesuaikan ukuran gambar profil */
+        height: 35px;
+    }
+}
+
 .books {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* 5 kolom untuk desktop */
     gap: 30px;
     padding-bottom: 40px;
 }
@@ -147,13 +164,21 @@ li {
     text-align: center;
     box-sizing: border-box;
 }
+
+.book img {
+    display: block;
+    border-radius: 10px;
+    width: 85%; /* Ukuran gambar lebih kecil */
+    margin: 10px auto;
+}
+
 .book h3 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3; /* Batasi maksimal 3 baris */
     overflow: hidden;
-    text-overflow: ellipsis; /* Tambahkan elipsis (...) */
-    white-space: normal; /* Mengizinkan teks multi-line */
+    text-overflow: ellipsis;
+    white-space: normal;
     font-size: 16px;
     margin: 10px 0;
     text-align: left;
@@ -163,7 +188,7 @@ li {
     box-sizing: border-box;
     border-bottom: 1px solid #64748B;
     padding-bottom: 10px;
-    word-break: break-word; /* Agar teks panjang terpotong dengan baik */
+    word-break: break-word;
 }
 
 .book h4 {
@@ -171,8 +196,8 @@ li {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3; /* Batasi maksimal 3 baris */
     overflow: hidden;
-    text-overflow: ellipsis; /* Tambahkan elipsis (...) */
-    white-space: normal; /* Mengizinkan teks multi-line */
+    text-overflow: ellipsis;
+    white-space: normal;
     font-size: 16px;
     margin: 10px 0;
     text-align: left;
@@ -180,20 +205,20 @@ li {
     padding-right: 15px;
     color: var(--a);
     box-sizing: border-box;
-    /* border-bottom: 1px solid #64748B; */
     padding-bottom: 10px;
-    word-break: break-word; /* Agar teks panjang terpotong dengan baik */
-    text-decoration: none; /* Menghilangkan garis bawah */
+    word-break: break-word;
+    text-decoration: none;
     font-weight: bold;
 }
+
 .book a {
-    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+    text-decoration: none;
 }
 
 .book a:hover {
-    text-decoration: none; /* Menghilangkan garis bawah saat hover */
+    text-decoration: none;
 }
-       
+
 .book p {
     color: #777;
     font-size: 14px;
@@ -201,6 +226,70 @@ li {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/* Media Queries untuk Responsif */
+
+/* Responsif untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
+    .books {
+        grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk layar sedikit lebih kecil */
+    }
+
+    .book img {
+        width: 90%; /* Menyesuaikan gambar untuk ukuran layar lebih kecil */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 15px; /* Menyesuaikan ukuran font */
+    }
+}
+
+/* Responsif untuk tablet (max-width: 992px) */
+@media (max-width: 992px) {
+    .books {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolom untuk tablet */
+    }
+
+    .book img {
+        width: 90%;
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 14px;
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .books {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk perangkat mobile */
+        gap: 20px; /* Mengurangi gap antar kolom pada perangkat mobile */
+    }
+
+    .book img {
+        width: 85%; /* Memperbesar gambar agar memenuhi lebar kolom */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 13px; /* Ukuran font lebih kecil */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px (mobile sangat kecil) */
+@media (max-width: 480px) {
+    .books {
+        grid-template-columns: 1fr; /* Kolom hanya satu untuk layar kecil */
+    }
+
+    .book img {
+        width: 85%; /* Menyesuaikan gambar agar lebar penuh pada perangkat kecil */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 12px; /* Ukuran font semakin kecil */
+    }
+}
+
 
 .study-slogan {
     position: relative;
@@ -235,22 +324,22 @@ li {
 
 
 .category-slogan {
-    display: flex; /* Mengatur kategori dan gambar dalam satu baris */
-    align-items: center; /* Pusatkan gambar dan teks secara vertikal */
-    padding-left: 0%;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
     padding-bottom: 4%;
     color: var(--d);
 }
 
-.category-slogan a{
+.category-slogan a {
     color: var(--a);
-    text-decoration: none; /* Menghilangkan garis bawah */
+    text-decoration: none;
 }
 
 .category-slogan img {
-    margin-right: 20px; /* Memberi jarak antara gambar dan kategori */
-    width: 40%; /* Ukuran gambar (ubah sesuai kebutuhan) */
-    height: auto; /* Agar gambar tidak terdistorsi */
+    margin-right: 20px;
+    width: 40%; /* Ukuran gambar */
+    height: auto;
 }
 
 /* Hanya untuk Koleksi Terbaru */
@@ -260,35 +349,113 @@ h1:first-of-type {
 
 /* CSS untuk kategori buku */
 .category-carousel {
-    display: flex; /* Mengatur elemen dalam satu baris */
-    align-items: center; /* Memastikan elemen sejajar secara vertikal */
-    flex-wrap: wrap; /* Supaya elemen turun ke bawah jika tidak muat dalam satu baris */
-    gap: 10px; /* Memberikan jarak antar elemen */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .category {
-    display: flex; /* Agar teks di dalam elemen juga sejajar */
-    align-items: center; /* Menyelaraskan teks secara vertikal */
-    font-size: 18px; /* Ukuran teks kategori */
+    display: flex;
+    align-items: center;
+    font-size: 18px;
     font-weight: normal;
-    text-decoration: none; /* Menghilangkan garis bawah */
-    color: var(--a); /* Warna teks */
+    text-decoration: none;
+    color: var(--a);
 }
 
 .category p {
-    margin: 0; /* Menghilangkan margin default */
+    margin: 0;
 }
 
 .separator {
-    font-size: 18px; /* Ukuran teks pemisah */
-    color: var(--d); /* Warna pemisah */
-    margin: 0 5px; /* Memberikan jarak antar elemen */
+    font-size: 18px;
+    color: var(--d);
+    margin: 0 5px;
 }
-
 
 .category:hover {
     color: var(--f); 
 }
+
+/* Responsif untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
+    .category-slogan img {
+        width: 50%; /* Gambar lebih besar di layar yang lebih kecil */
+    }
+
+    .category-carousel {
+        gap: 15px; /* Menambah jarak antar kategori */
+    }
+
+    .category {
+        font-size: 16px; /* Mengurangi ukuran teks untuk kategori */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 992px (tablet) */
+@media (max-width: 992px) {
+    .category-slogan {
+        flex-direction: column; /* Mengubah urutan elemen menjadi kolom */
+        text-align: center; /* Menyelaraskan teks di tengah */
+    }
+
+    .category-slogan img {
+        width: 60%; /* Gambar lebih besar di perangkat tablet */
+        margin-bottom: 20px; /* Memberikan jarak antara gambar dan teks */
+    }
+
+    .category-carousel {
+        gap: 20px;
+        justify-content: center; /* Menyelaraskan kategori ke tengah */
+    }
+
+    .category {
+        font-size: 14px; /* Mengurangi ukuran teks kategori */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .category-slogan {
+        flex-direction: column; /* Mengubah urutan elemen menjadi kolom */
+        text-align: center;
+    }
+
+    .category-slogan img {
+        width: 80%; /* Gambar lebih besar di perangkat mobile */
+        margin-bottom: 10px;
+    }
+
+    .category-carousel {
+        gap: 15px;
+        justify-content: center; /* Menyelaraskan kategori ke tengah */
+    }
+
+    .category {
+        font-size: 14px; /* Mengurangi ukuran teks kategori */
+    }
+
+    .separator {
+        font-size: 16px; /* Menyesuaikan ukuran teks pemisah */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px (mobile lebih kecil) */
+@media (max-width: 480px) {
+    .category-slogan img {
+        width: 90%; /* Gambar hampir memenuhi layar */
+    }
+
+    .category {
+        font-size: 12px; /* Ukuran teks kategori lebih kecil */
+    }
+
+    .separator {
+        font-size: 14px; /* Ukuran teks pemisah lebih kecil */
+    }
+}
+
 
 /* Styling untuk container carousel */
 .study-slogan {
@@ -369,6 +536,73 @@ h1:first-of-type {
     margin-left: 150px; /* Menghapus margin kiri */
 }
 
+/* Responsif untuk layar kecil */
+@media (max-width: 1200px) {
+    .study-slogan {
+        padding: 20px 0; /* Menyesuaikan padding */
+    }
+
+    .carousel-inner {
+        max-width: 100%; /* Carousel menyesuaikan lebar 100% */
+    }
+
+    .slogan-content h2 {
+        font-size: 36px; /* Menyesuaikan ukuran judul */
+    }
+
+    .slogan-content p {
+        font-size: 18px; /* Menyesuaikan ukuran paragraf */
+    }
+
+    .image-content img {
+        width: 600px; /* Mengurangi lebar gambar */
+    }
+}
+
+@media (max-width: 768px) {
+    .study-slogan {
+        padding: 15px 0; /* Menyesuaikan padding */
+    }
+
+    .slogan-content {
+        flex: 0 0 100%; /* Menjadikan teks 100% lebar layar */
+        padding: 15px;
+    }
+
+    .slogan-content h2 {
+        font-size: 28px; /* Menyesuaikan ukuran judul */
+    }
+
+    .slogan-content p {
+        font-size: 16px; /* Menyesuaikan ukuran paragraf */
+    }
+
+    .image-content {
+        flex: 0 0 100%; /* Menjadikan gambar 100% lebar layar */
+        margin-top: 20px;
+    }
+
+    .image-content img {
+        width: 100%; /* Gambar mengisi lebar penuh layar */
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .slogan-content h2 {
+        font-size: 24px; /* Menyesuaikan ukuran judul */
+    }
+
+    .slogan-content p {
+        font-size: 14px; /* Menyesuaikan ukuran paragraf */
+    }
+
+    .image-content img {
+        width: 100%; /* Gambar mengisi lebar penuh layar */
+    }
+}
+
+
 
 
 
@@ -399,10 +633,14 @@ h1:first-of-type {
     justify-content: space-around;
     width: 100%;
     max-width: 1200px;
+    flex-wrap: wrap; /* Membuat kolom turun jika terlalu banyak */
+    gap: 20px; /* Memberikan jarak antar kolom */
 }
 
 .footer .column {
     width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .footer .about-column {
@@ -432,6 +670,7 @@ h1:first-of-type {
 .footer .social {
     display: flex;
     gap: 10px;
+    justify-content: center; /* Meratakan sosial media ke tengah */
 }
 
 .footer .social i {
@@ -452,10 +691,92 @@ h1:first-of-type {
     box-sizing: border-box;
 }
 
-/* Responsive Adjustments */
-@media (min-width: 768px) {
+/* Responsif untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
     .footer .column {
-        width: 30%;
-        text-align: left;
+        width: 45%; /* Lebar kolom lebih besar di layar menengah */
+        text-align: center;
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 992px (tablet) */
+@media (max-width: 992px) {
+    .footer .column {
+        width: 100%; /* Setiap kolom akan menjadi satu baris penuh */
+        text-align: center;
+    }
+
+    .footer .about-column {
+        border-right: none; /* Menghapus border di antara kolom */
+        padding-right: 0;
+    }
+
+    .footer .lokasi-column {
+        padding-left: 0;
+    }
+
+    .footer-columns {
+        flex-direction: column; /* Mengubah tata letak kolom menjadi vertikal */
+        align-items: center; /* Meratakan kolom ke tengah */
+    }
+
+    .footer .logo img {
+        width: 200px; /* Mengurangi ukuran logo pada perangkat yang lebih kecil */
+    }
+
+    .copyright {
+        text-align: center;
+        padding-left: 0; /* Menghapus padding kiri */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .footer {
+        padding-right: 20px; /* Mengurangi padding pada perangkat mobile */
+        padding-left: 20px;
+    }
+
+    .footer .logo img {
+        width: 180px; /* Menyesuaikan ukuran logo lebih kecil */
+    }
+
+    .footer-columns {
+        gap: 15px; /* Mengurangi jarak antar kolom */
+    }
+
+    .footer .column p, .footer .column a {
+        font-size: 13px; /* Mengurangi ukuran font pada perangkat kecil */
+    }
+
+    .footer .social i {
+        font-size: 18px; /* Mengurangi ukuran ikon sosial media */
+    }
+
+    .copyright {
+        font-size: 10px; /* Mengurangi ukuran font pada copyright */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px (mobile sangat kecil) */
+@media (max-width: 480px) {
+    .footer .logo img {
+        width: 150px; /* Logo semakin kecil pada perangkat mobile sangat kecil */
+    }
+
+    .footer-columns {
+        gap: 10px; /* Mengurangi gap antar kolom */
+    }
+
+    .footer .column p, .footer .column a {
+        font-size: 12px; /* Ukuran teks lebih kecil */
+    }
+
+    .footer .social i {
+        font-size: 16px; /* Mengurangi ukuran ikon sosial media lebih kecil */
+    }
+
+    .copyright {
+        font-size: 9px; /* Mengurangi ukuran font copyright lebih kecil */
     }
 }

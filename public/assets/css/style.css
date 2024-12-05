@@ -521,57 +521,66 @@ body {
 .main-content {
     flex-grow: 1; /* Konten utama mengisi ruang yang tersisa */
 }
+/* Header Section */
 .header {
     background-color: var(--a);
     color: white;
-    padding-left: 95px;
-    padding-right: 95px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    padding-left: 95px;
+    padding-right: 95px;
+    position: relative;
 }
+
 .logo-container {
     display: flex;
-    justify-content: center;  /* Untuk menempatkan logo di tengah secara horizontal */
-    align-items: center;      /* Untuk menempatkan logo di tengah secara vertikal */
-    height: 100px;            /* Sesuaikan tinggi container jika diperlukan */
-}
-.header .logo {
-    display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100px;
+    flex: 1;
 }
+
 .header .logo img {
     height: 50px;
     margin-right: 10px;
 }
+
 .header .nav {
     display: flex;
     gap: 20px;
     justify-content: center;
+    flex: 2;
+    padding: 10px 0;
 }
+
 .header .nav a {
     color: white;
     text-decoration: none;
-    font-weight: 400; /* Sesuaikan font-weight */
-    font-size: 16px; /* Sesuaikan ukuran font */
+    font-weight: 400;
+    font-size: 16px;
     display: flex;
     align-items: center;
-    padding: 12px 10px; /* Sesuaikan padding */
-    transition: all 0.3s ease; /* Tambahkan transisi */
+    padding: 12px 10px;
+    transition: all 0.3s ease;
 }
+
 .header .nav a:hover {
-    color: var(--f); /* Sesuaikan warna saat hover */
+    color: var(--f);
 }
+
 .header .nav a.active {
-    color: var(--d); /* Warna biru untuk teks saat dipilih */
+    color: var(--d);
 }
-/* Mengatur tampilan profil pengguna dan dropdown */
+
 .profile {
     position: relative;
     display: flex;
     align-items: center;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .profile .username {
@@ -603,7 +612,7 @@ body {
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
     width: 100px;
-    opacity:0 ;
+    opacity: 0;
     pointer-events: none;
     transition: all .3s ease;
     z-index: 1000;
@@ -612,7 +621,7 @@ body {
 .profile .profile-link.show {
     opacity: 1;
     pointer-events: visible;
-    margin: 0 ;
+    margin: 0;
     top: 100%;
 }
 
@@ -630,32 +639,166 @@ body {
 }
 
 .profile .profile-link li a:hover {
-    background-color: var(--f); /* Warna saat hover */
+    background-color: var(--f);
 }
 
-.header .user {
-    display: flex;
-    align-items: center;
+/* Tombol hamburger */
+.header .fa-bars {
+    display: none;
+    font-size: 21px;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px; /* Tambah jarak dari logo */
+    order: -1; /* Letakkan di sisi kiri */
 }
-.header .user i {
-    margin-right: 10px;
+
+/* Checkbox untuk mengontrol menu */
+#menu-toggler {
+    display: none;
 }
+
+/* Responsif untuk layar kecil */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .logo-container {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header .logo img {
+        height: 40px; /* Mengecilkan logo */
+    }
+
+    .header .fa-bars {
+        display: block;
+        margin-right: 10px;
+    }
+
+    .header .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--a);
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 10;
+    }
+
+    #menu-toggler:checked ~ .nav {
+        display: flex;
+    }
+
+    .header .nav a {
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .profile .username {
+        font-size: 14px; /* Mengecilkan font username */
+    }
+
+    .profile .username img {
+        width: 35px; /* Mengecilkan ukuran gambar profil */
+        height: 35px;
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px */
+@media screen and (max-width: 480px) {
+    .header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .header .logo img {
+        height: 35px; /* Logo lebih kecil untuk layar sangat kecil */
+    }
+
+    .header .nav a {
+        font-size: 14px;
+    }
+
+    .profile .username {
+        font-size: 12px; /* Font lebih kecil untuk layar sangat kecil */
+    }
+
+    .profile .username img {
+        width: 30px; /* Ukuran gambar profil lebih kecil */
+        height: 30px;
+    }
+}
+
 .main {
     padding-left: 95px;
     padding-right: 95px;
 }
-.main h1 {
-    color: var(--a);
-    display: flex; /* Menggunakan flexbox untuk menyusun elemen */
-    align-items: center; /* Menyelaraskan teks di tengah secara vertikal */
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .main {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }
 
+@media (max-width: 768px) {
+    .main {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+/* Styling for the h1 */
+.main h1 {
+    color: var(--a);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Menyelaraskan teks dan garis di tengah secara horizontal */
+    font-size: 32px; /* Ukuran font default */
+}
+
+/* Styling for the pseudo-element after the h1 */
 .main h1::after {
-    content: ""; /* Menyediakan konten untuk pseudo-elemen */
-    margin-left: 3%; /* Jarak antara teks dan garis */
-    height: 0.5px; /* Tinggi garis */
-    flex-grow: 1; /* Membuat garis mengambil sisa ruang */
-    background-color: var(--a); /* Mengatur warna garis */
+    content: "";
+    margin-left: 4%;
+    height: 0.5px;
+    flex-grow: 1;
+    background-color: var(--a);
+}
+
+/* Responsive adjustments for h1 */
+@media (max-width: 768px) {
+    .main h1 {
+        font-size: 28px; /* Ukuran font lebih kecil pada layar tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .main h1 {
+        font-size: 28px; /* Ukuran font lebih kecil pada layar ponsel */
+    }
 }
 .header-container {
     display: flex;
@@ -671,6 +814,7 @@ body {
     padding-bottom: 5px;
     gap: 10px; /* Menambahkan jarak antar elemen dalam form */
     flex-wrap: wrap; /* Agar form filter bisa melipat ke baris berikutnya jika ruang terbatas */
+    max-width: 100%; /* Menjaga filter agar tidak meluas lebih dari lebar kontainer */
 }
 
 .filter select, .filter input {
@@ -678,6 +822,8 @@ body {
     border: 1px solid #ccc;
     border-radius: 50px;
     width: 200px; /* Set lebar elemen select dan input agar lebih proporsional */
+    max-width: 100%; /* Membatasi lebar elemen select dan input agar tidak terlalu lebar */
+    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran elemen */
 }
 
 .filter button {
@@ -687,11 +833,51 @@ body {
     color: white;
     border-radius: 50px;
     cursor: pointer;
+    width: 150px; /* Membuat tombol filter lebih kecil dan proporsional */
+    max-width: 100%;
 }
 
 .filter button:hover {
     background-color: #0056b3; /* Ubah warna saat tombol di-hover */
 }
+
+/* Responsif: Ketika ukuran layar lebih kecil dari 992px */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column; /* Mengubah menjadi kolom */
+        align-items: flex-start; /* Menyusun elemen-elemen ke kiri */
+        text-align: left; /* Mengatur teks ke kiri */
+    }
+
+    .filter {
+        width: 100%; /* Filter mengambil lebar penuh */
+        justify-content: flex-start; /* Agar form filter berada di kiri */
+    }
+
+    .filter select, .filter input {
+        width: 100%; /* Elemen select dan input mengambil lebar penuh pada layar kecil */
+        margin-bottom: 10px; /* Memberikan jarak antar elemen */
+    }
+
+    .filter button {
+        width: 100%; /* Tombol filter juga mengambil lebar penuh */
+        margin-top: 10px; /* Memberikan jarak antara tombol dan elemen sebelumnya */
+    }
+}
+
+/* Responsif: Ketika ukuran layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .filter {
+        flex-direction: column; /* Menjadikan elemen filter berada di bawah satu sama lain */
+        align-items: stretch; /* Menyusun elemen-elemen filter agar memanjang */
+    }
+
+    .filter select, .filter input, .filter button {
+        width: 50%; /* Membuat elemen filter penuh lebar */
+        margin-bottom: 10px; /* Memberikan jarak antar elemen */
+    }
+}
+
 
 .books {
     display: grid;
@@ -752,7 +938,7 @@ body {
     padding-bottom: 10px;
     word-break: break-word; /* Agar teks panjang terpotong dengan baik */
 }
-       
+
 .book p {
     color: #777;
     font-size: 14px;
@@ -760,6 +946,60 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/* Responsif untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
+    .books {
+        grid-template-columns: repeat(4, 1fr); /* Mengurangi jumlah kolom menjadi 4 pada layar lebih kecil */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 15px; /* Menyesuaikan ukuran font untuk lebih kecil */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 992px (tablet) */
+@media (max-width: 992px) {
+    .books {
+        grid-template-columns: repeat(3, 1fr); /* Mengurangi jumlah kolom menjadi 3 pada tablet */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 14px; /* Mengurangi ukuran font pada tablet */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .books {
+        grid-template-columns: repeat(2, 1fr); /* Mengurangi jumlah kolom menjadi 2 pada perangkat mobile */
+        gap: 20px; /* Mengurangi jarak antar kolom pada perangkat mobile */
+    }
+
+    .book img {
+        width: 85%; /* Memperbesar gambar agar memenuhi lebar kolom */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 16px; /* Ukuran font lebih kecil pada perangkat mobile */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px (mobile sangat kecil) */
+@media (max-width: 480px) {
+    .books {
+        grid-template-columns: 1fr; /* Kolom hanya satu pada perangkat dengan layar sangat kecil */
+    }
+
+    .book img {
+        width: 85%; /* Menyesuaikan gambar agar lebar penuh pada perangkat kecil */
+    }
+
+    .book h3, .book h4, .book p {
+        font-size: 12px; /* Ukuran font semakin kecil pada perangkat sangat kecil */
+    }
+}
+
 .footer {
     display: flex;
     flex-direction: column;
@@ -772,6 +1012,7 @@ body {
     text-align: center;
     margin-top: auto; /* Footer selalu di bawah */
 }
+
 .footer .logo img {
     width: 275px; /* Sesuaikan ukuran logo */
     margin-bottom: 20px;
@@ -782,11 +1023,15 @@ body {
     justify-content: space-around; /* Agar kolom tersebar merata */
     width: 100%; /* Agar kolom mengisi lebar footer */
     max-width: 1200px; /* Batasi lebar maksimal */
-    
+    flex-wrap: wrap; /* Agar kolom turun ke baris berikutnya pada layar kecil */
+    gap: 20px; /* Memberikan jarak antar kolom */
 }
+
 .footer .column {
     width: 30%;
+    margin-bottom: 20px; /* Memberikan jarak antar kolom pada layar kecil */
 }
+
 .footer .about-column {
     border-right: 0.5px solid white; /* Garis vertikal di sebelah kanan ABOUT */
     padding-right: 20px; /* Jarak dari border agar konten tidak terlalu rapat */
@@ -795,21 +1040,28 @@ body {
 .footer .lokasi-column {
     padding-left: 20px; /* Jarak dari border agar konten tidak terlalu rapat */
 }
+
 .footer .column h3 {
     margin-top: 0;
 }
+
 .footer .column p, .footer .column a {
     color: white;
     font-size: 14px;
     text-decoration: none;
+    line-height: 1.5; /* Memberikan jarak antar baris teks */
 }
+
 .footer .social {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
+
 .footer .social i {
     font-size: 20px;
 }
+
 .copyright {
     width: 100%;
     text-align: left;
@@ -821,6 +1073,97 @@ body {
     padding-left: 90px;
     margin: 0;
     box-sizing: border-box; /* Pastikan padding termasuk dalam lebar elemen */
+}
+
+/* Responsif untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
+    .footer .column {
+        width: 45%; /* Lebar kolom lebih besar pada layar menengah */
+        text-align: center;
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 992px (tablet) */
+@media (max-width: 992px) {
+    .footer .column {
+        width: 100%; /* Setiap kolom akan menjadi satu baris penuh */
+        text-align: center;
+    }
+
+    .footer .about-column {
+        border-right: none; /* Menghapus border di antara kolom */
+        padding-right: 0;
+    }
+
+    .footer .lokasi-column {
+        padding-left: 0;
+    }
+
+    .footer-columns {
+        flex-direction: column; /* Mengubah tata letak kolom menjadi vertikal */
+        align-items: center; /* Meratakan kolom ke tengah */
+    }
+
+    .footer .logo img {
+        width: 200px; /* Mengurangi ukuran logo pada perangkat yang lebih kecil */
+    }
+
+    .copyright {
+        text-align: center;
+        padding-left: 0; /* Menghapus padding kiri */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 768px (mobile) */
+@media (max-width: 768px) {
+    .footer {
+        padding-right: 20px; /* Mengurangi padding pada perangkat mobile */
+        padding-left: 20px;
+    }
+
+    .footer .logo img {
+        width: 180px; /* Menyesuaikan ukuran logo lebih kecil */
+    }
+
+    .footer-columns {
+        gap: 15px; /* Mengurangi jarak antar kolom */
+    }
+
+    .footer .column p, .footer .column a {
+        font-size: 13px; /* Mengurangi ukuran font pada perangkat kecil */
+    }
+
+    .footer .social i {
+        font-size: 18px;
+    }
+
+    .copyright {
+        font-size: 10px; /* Mengurangi ukuran font pada copyright */
+    }
+}
+
+/* Responsif untuk layar lebih kecil dari 480px (mobile sangat kecil) */
+@media (max-width: 480px) {
+    .footer .logo img {
+        width: 150px; /* Logo semakin kecil pada perangkat mobile sangat kecil */
+    }
+
+    .footer-columns {
+        gap: 10px; /* Mengurangi gap antar kolom */
+    }
+
+    .footer .column p, .footer .column a {
+        font-size: 12px; /* Ukuran teks lebih kecil */
+    }
+
+    .footer .social i {
+        font-size: 16px; 
+        /* Mengurangi ukuran ikon sosial media lebih kecil */
+    }
+
+    .copyright {
+        font-size: 9px; /* Mengurangi ukuran font copyright lebih kecil */
+    }
 }
 
 /* DETAIL BUKU */
@@ -974,23 +1317,53 @@ h1:first-of-type {
 
 .search-container {
     position: relative;
-    display: inline-block;
+    display: inline-flex; /* Menggunakan flexbox agar kontainer lebih fleksibel */
+    align-items: center;  /* Mengatur agar input dan tombol sejajar secara vertikal */
+    width: 50%;           /* Memastikan kontainer mengambil lebar 50% dari elemen induk */
+    max-width: 50%;       /* Menentukan lebar maksimum agar tetap responsif */
+    box-sizing: border-box; /* Menghindari perubahan ukuran karena padding */
 }
 
 #search {
-    padding-right: 24px; /* Memberikan ruang untuk tombol "X" */
+    width: 100%;           /* Input field mengambil seluruh lebar kontainer */
+    padding-right: 30px;   /* Memberikan ruang untuk tombol "X" */
+    box-sizing: border-box; /* Menghindari perubahan ukuran karena padding */
 }
 
 #clearSearch {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;     /* Menempatkan tombol di luar aliran dokumen */
+    left: 100px;            /* Menempatkan tombol di sebelah kanan */
+    top: 50%;               /* Menyelaraskan tombol secara vertikal */
+    transform: translateY(-50%); /* Agar tombol terpusat secara vertikal */
     background: transparent;
     border: none;
-    font-size: 18px;
+    font-size: 1.2em;       /* Menggunakan unit relatif untuk font size */
     cursor: pointer;
     color: var(--d);
+    display: none;          /* Menyembunyikan tombol saat tidak ada teks dalam input */
+}
+
+/* Menampilkan tombol "X" jika ada teks dalam input */
+#search:not(:placeholder-shown) + #clearSearch {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        width: 50%;   /* Kontainer pencarian mengambil lebar penuh */
+        max-width: 100%; /* Tidak ada batasan maksimum lebar */
+    }
+    
+    #search {
+        padding-right: 40px; /* Menambahkan padding tambahan jika diperlukan */
+    }
+
+    #clearSearch {
+        font-size: 1em; /* Mengurangi ukuran tombol untuk layar lebih kecil */
+        left: 65%; /* Menjaga tombol tetap di kanan input */
+        top: 17%; /* Menyelaraskan tombol secara vertikal */
+        transform: translateY(-50%);
+    }
 }
 
 #loading {

@@ -7,4 +7,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('pengembalian:otomatis')->dailyAt('01:00')->evenInMaintenanceMode();
+Schedule::command('pengembalian:otomatis')->dailyAt('13:17')->evenInMaintenanceMode();

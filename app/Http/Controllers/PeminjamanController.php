@@ -248,7 +248,7 @@ public function report(Request $request)
         ]);
         
     }
-
+   
     public function history()
     {
         $userNipNimNidn = Auth::user()->nip_nim_nidn;
@@ -260,18 +260,22 @@ public function report(Request $request)
                 // Filter berdasarkan nip_nidn_nim pengguna yang sedang login
                 $query->where('nip_nidn_nim', $userNipNimNidn);
             })
-            ->orderBy('tgl_dikembalikan', 'desc')
+            ->orderBy('tgl_dikembalikan', 'desc') // Urutkan berdasarkan tanggal pengembalian (desc)
             ->get();
     
         // Kelompokkan pengembalian berdasarkan tanggal pengembalian
-        $groupedReturns = $returns->groupBy(function($item) {
+        $groupedReturns = $returns->groupBy(function ($item) {
             return Carbon::parse($item->tgl_dikembalikan)->toDateString(); // Kelompokkan berdasarkan tanggal saja
-        });
+        })->map(function ($items) {
+            // Urutkan setiap grup berdasarkan waktu pengembalian (created_at) secara naik
+            return $items->sortByDesc('created_at');
+        })->sortKeysDesc();
     
         $user = Auth::user();
     
         return view('pembaca.history', compact('userNipNimNidn', 'groupedReturns', 'user'));
     }
+    
     
 
 }    

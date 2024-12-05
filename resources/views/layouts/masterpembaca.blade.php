@@ -14,26 +14,31 @@
 </head>
 <body>
     <!-- Header Section -->
-    <div class="header">
-        <div class="logo">
-            <a href="#" class="logo"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
-        </div>
-        <div class="nav">
-            <a href="{{ '/member/dashboard' }}" class="{{ request()->is('member/dashboard*') ? 'active' : '' }}">Dashboard</a>
-            <a href="{{ url('/katalog?reset_filters=1') }}" class="{{ request()->is('katalog') ? 'active' : '' }}">Katalog</a>
-            <a href="{{ '/borrowedlist' }}" class="{{ request()->is('borrowedlist') ? 'active' : '' }}">Borrowed list</a>
-        </div>
-        <div class="profile">
-            <button class="username"><img src="{{ asset('storage/assets/fotos/' . $user->foto) }}" alt="">
-                {{ $user->name }}<i class='bx bx-chevron-right icon-right'></i> 
-            </button>
-            <ul class="profile-link">
-                <li><a href="{{ url('profilePembaca') }}"><i class='bx bx-user-circle icon-right'></i>Profil</a></li>
-                <li><a href="{{ url('history') }}"><i class='bx bx-history icon-right'></i>History</a></li>
-                <li><a href="{{ route('logout') }}"><i class='bx bx-log-out icon'></i>Log-Out</a></li>
-            </ul>
-        </div>
+    <!-- Header Section -->
+<div class="header">
+    <div class="logo">
+        <a href="#" class="logo"><img src="{{ asset('assets/images/logo.svg') }}" alt=""></a>
     </div>
+    <input type="checkbox" id="menu-toggler" class="menu-toggler">
+    <label for="menu-toggler" class="fa fa-bars"></label>
+    <div class="nav">
+        <a href="{{ '/member/dashboard' }}" class="{{ request()->is('member/dashboard*') ? 'active' : '' }}">Dashboard</a>
+        <a href="{{ url('/katalog?reset_filters=1') }}" class="{{ request()->is('katalog') ? 'active' : '' }}">Katalog</a>
+        <a href="{{ '/borrowedlist' }}" class="{{ request()->is('borrowedlist') ? 'active' : '' }}">Borrowed list</a>
+    </div>
+    <div class="profile"> <!-- Pindahkan profile ke sini -->
+        <button class="username">
+            <img src="{{ asset('storage/assets/fotos/' . $user->foto) }}" alt="">
+            {{ $user->name }}<i class='bx bx-chevron-right icon-right'></i> 
+        </button>
+        <ul class="profile-link">
+            <li><a href="{{ url('profilePembaca') }}"><i class='bx bx-user-circle icon-right'></i>Profil</a></li>
+            <li><a href="{{ url('history') }}"><i class='bx bx-history icon-right'></i>History</a></li>
+            <li><a href="{{ route('logout') }}"><i class='bx bx-log-out icon'></i>Log-Out</a></li>
+        </ul>
+    </div>
+</div>
+
 
     <!-- Main Content -->
     <div class="main">
@@ -46,7 +51,7 @@
         <div class="footer-columns">
         <div class="column about-column">
             <h3>ABOUT</h3>
-            <p>UPT E-PERPUSATAKAAN PSDKU POLINEMA KEDIRI adalah website perpustakaan online sebagai wadah membaca warga PSDKU POLINEMA di Kota Kediri.</p>
+            <p>UPT E-PERPUSTAKAAN PSDKU POLINEMA KEDIRI adalah website perpustakaan online sebagai wadah membaca warga PSDKU POLINEMA di Kota Kediri.</p>
         </div>
         <div class="column lokasi-column">
             <h3>LOKASI</h3>

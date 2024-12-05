@@ -275,7 +275,7 @@ h1 {
     padding-right: 95px;
     padding-left: 85px;
     text-align: center;
-    margin-top: auto; /* Footer always at the bottom */
+    margin-top: auto; /* Footer selalu di bawah */
 }
 
 .footer .logo img {
@@ -342,9 +342,51 @@ h1 {
 }
 
 /* Responsive Adjustments */
-@media (min-width: 768px) {
+@media (max-width: 1200px) {
+    .footer-columns {
+        flex-direction: column; /* Mengubah kolom menjadi vertikal pada layar lebih kecil */
+        align-items: center; /* Menyusun elemen footer ke tengah */
+        gap: 20px; /* Menambah jarak antar kolom */
+    }
+
     .footer .column {
-        width: 30%;
-        text-align: left;
+        width: 80%; /* Membuat kolom lebih lebar saat responsif */
+        text-align: center; /* Menyusun teks ke tengah */
+    }
+
+    .footer .about-column {
+        border-right: none; /* Menghapus garis pembatas pada kolom "about" */
+        padding-right: 0;
+    }
+
+    .footer .lokasi-column {
+        padding-left: 0; /* Menghapus padding kiri pada kolom lokasi */
+    }
+
+    .footer .logo img {
+        width: 200px; /* Mengurangi ukuran logo saat responsif */
+    }
+
+    .copyright {
+        text-align: center; /* Menyusun teks copyright di tengah */
+        padding-left: 0; /* Menghapus padding kiri */
+        padding-top: 10px; /* Mengurangi padding atas */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer .column {
+        width: 100%; /* Membuat kolom lebar penuh pada layar ponsel */
+        text-align: center; /* Menyusun teks ke tengah */
+    }
+
+    .footer .social i {
+        font-size: 18px; /* Mengurangi ukuran ikon sosial media di ponsel */
+    }
+
+    .copyright {
+        font-size: 10px; /* Mengurangi ukuran font pada copyright untuk layar kecil */
+        padding-left: 0; /* Menghapus padding kiri */
+        padding-top: 8px; /* Mengurangi padding atas */
     }
 }

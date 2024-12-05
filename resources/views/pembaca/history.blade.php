@@ -26,6 +26,9 @@
                 <div class="book-card">
                     <a href="{{ route('katalog.detail', ['kode_buku' => $return->peminjaman->buku->kode_buku, 'origin' => 'history']) }}">
                         <div class="book-card-content">
+                            <span class="return-time">
+                                {{ \Carbon\Carbon::parse($return->created_at)->format('H:i:s') }}
+                            </span>
                             <img src="{{ asset('storage/assets/covers/' . $return->peminjaman->buku->cover) }}" alt="Book cover">
                             <div class="book-info">
                             <h3>{{ $return->peminjaman->buku->judul }}</h3>

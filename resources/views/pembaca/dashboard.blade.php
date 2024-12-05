@@ -37,8 +37,8 @@
                     <h2>Study anytime, <br>wherever you are</h2>
                     <p>Akses perpustakaan kampus dari mana saja, kapan saja. Belajar jadi lebih mudah dan fleksibel.</p>
                 </div>
-                <div class="image-content mt-4">
-                    <img src="{{ asset('assets/images/dash.svg') }}" class="img-fluid" alt="Study Anytime">
+                <div class="image-content mt-3">
+                    <img src="{{ asset('assets/images/dash.svg') }}" class="img-fluid responsive-image" alt="Study Anytime">
                 </div>
             </div>
         </div>

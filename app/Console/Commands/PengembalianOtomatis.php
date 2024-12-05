@@ -22,7 +22,7 @@ class PengembalianOtomatis extends Command
      *
      * @var string
      */
-    protected $description = 'Hapus data buku dipinjam yang berhubungan dengan peminjaman yang sudah kembali hari ini';
+    protected $description = 'Hapus data buku dipinjam yang berhubungan dengan peminjaman yang sudah kembali hari ini dan perbarui stok buku.';
 
     /**
      * Execute the console command.
@@ -32,22 +32,37 @@ class PengembalianOtomatis extends Command
         // Ambil tanggal hari ini
         $today = Carbon::today();
 
-        // Cari peminjaman yang memiliki tanggal kembali hari ini
-        // $peminjaman = Peminjaman::where('tgl_kembali', $today)->get();
+        // Cari peminjaman yang memiliki tanggal kembali hari ini atau sebelumnya
         $peminjaman = Peminjaman::where('tgl_kembali', '<=', $today)->get();
+
         // Loop melalui peminjaman yang ditemukan
         foreach ($peminjaman as $pinjam) {
-            // Hapus buku yang dipinjam berdasarkan peminjaman_id
-            BukuDipinjam::where('peminjaman_id', $pinjam->id)->delete();
+            // Ambil buku yang dipinjam berdasarkan peminjaman_id
+            $bukuDipinjam = BukuDipinjam::where('peminjaman_id', $pinjam->id)->get();
+
+            foreach ($bukuDipinjam as $buku) {
+                // Ambil buku yang dipinjam
+                $bukuDetail = $buku->buku; // Pastikan relasi ke model Buku sudah ada
+                if ($bukuDetail) {
+                    // Setiap entri BukuDipinjam mewakili satu buku yang dipinjam
+                    $bukuDetail->increment('stok'); // Tambah stok 1 untuk setiap buku yang dikembalikan
+                }
+
+                // Hapus data buku dipinjam
+                $buku->delete();
+            }
+
+            // Tambahkan data ke tabel pengembalian
             Pengembalian::create([
                 'id_pinjam' => $pinjam->id,
                 'tgl_dikembalikan' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
-            // Opsional: Anda bisa juga menghapus atau memperbarui peminjaman, jika perlu
+
+            // Opsional: Anda bisa menghapus peminjaman jika sudah tidak relevan
             // $pinjam->delete(); // Atau lakukan update status jika diperlukan
         }
 
         // Menampilkan output
-        $this->info('Data buku yang dipinjam berhasil dihapus untuk peminjaman yang kembali hari ini.');
+        $this->info('Data buku yang dipinjam berhasil dihapus dan stok buku diperbarui.');
     }
 }
