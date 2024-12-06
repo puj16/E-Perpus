@@ -7,21 +7,22 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About E-Perpus PSDKU Polinema
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+E-perpus PSDKU Polinema merupakan website yang bertujuan untuk memudahkan akses perpustakaan untuk mahasiswa maupun dosen polinema psdku kediri.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
+
+- **Katalog**: Pengguna dapat mencari, menelusuri, dan melihat daftar e-book, jurnal, serta laporan yang tersedia.
+- **Peminjaman**: Pengguna meminjam bahan dengan batas waktu 1 minggu dan dapat membaca melalui borrowed list. Stok terbatas.
+- **Perpanjangan**: Masa peminjaman dapat diperpanjang sekali sesuai batas yang ditentukan.
+- **Borrowed List**: Daftar bahan yang dipinjam dan hanya dapat dibaca oleh pengguna.
+- **Pengembalian**: Bahan yang dikembalikan akan hilang dari borrowed list. Pengembalian otomatis dilakukan jika waktu peminjaman terlampaui.
+- **Pelaporan**: menampilkan informasi peminjaman dan pengembalian dalam bentuk laporan dan grafik bagi pustakawan
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Features
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
