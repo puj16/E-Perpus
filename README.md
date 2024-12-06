@@ -7,11 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About E-Perpus PSDKU Polinema
+## Tentang E-Perpus PSDKU Polinema
 
 E-perpus PSDKU Polinema merupakan website yang bertujuan untuk memudahkan akses perpustakaan untuk mahasiswa maupun dosen polinema psdku kediri.
 
-## Features
+## Fitur
 
 - **Katalog**: Pengguna dapat mencari, menelusuri, dan melihat daftar e-book, jurnal, serta laporan yang tersedia.
 - **Peminjaman**: Pengguna meminjam bahan dengan batas waktu 1 minggu dan dapat membaca melalui borrowed list. Stok terbatas.
@@ -20,17 +20,43 @@ E-perpus PSDKU Polinema merupakan website yang bertujuan untuk memudahkan akses 
 - **Pengembalian**: Bahan yang dikembalikan akan hilang dari borrowed list. Pengembalian otomatis dilakukan jika waktu peminjaman terlampaui.
 - **Pelaporan**: menampilkan informasi peminjaman dan pengembalian dalam bentuk laporan dan grafik bagi pustakawan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Features
+## Akses Website
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Website e-perpus psdku polinema dapat diakses melalui [E-Perpus PSDKU Polinema](https://e-perpuspsdkupolinema.my.id/ )
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+> aplikasi website e-perpus bisa juga diakses melalui server lokal.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalasi dan Akses Lokal
 
-## Laravel Sponsors
+Instalasi dan akses lokal
+
+1.	Clone repositori dari github dengan menjalankan kode:
+   ```bash
+   git clone https://github.com/puj16/E-Perpus.git
+   ```
+2.	Masuk ke direktori proyek dengan menjalankan cd nama_proyek
+3.	Instal semua dependency PHP yang diperlukan jalankan perintah 
+   ```bash
+   composer install
+   ```
+4.	Salin file .env.example menjadi .env bisa juga dengan menjalankan perintah cp .env.example .env
+5.	Edit file env sesuai dengan project
+6.	Jalankan perintah berikut, untuk membuat application key
+   ```bash
+   php artisan key:generate
+   ```
+7.	Aktifkan web server
+8.	Jalankan perintah berikut di terminal direktori file yang sudah diclone untuk membuat tabel di database dan mengisi data awal.
+   ```bash
+   php artisan migrate 
+   ```
+9.	Jalankan server local dengan mengetikkan perintah php artisan serve
+10.	Akses halaman registrasi untuk menambahkan akun dan lakukan login
+11.	Modifikasi role user dengan mengubah nilai pada kolom role di tabel user pada database anda
+12.	User pustakawan dapat melaukan kelola untuk data user, kategori, penerbit, penulis, buku, serta mendapatkan informasi terkait peminjaman dan pengembalian.
+13.	User member dapat melakukan peminjaman, perpanjangan peminjaman, membaca buku atau dokumen, mengedit profil, melihat histori peminjaman dan melakukan pengembalian.
+
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
