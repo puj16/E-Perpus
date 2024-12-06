@@ -35,12 +35,18 @@ Instalasi dan akses lokal
    ```bash
    git clone https://github.com/puj16/E-Perpus.git
    ```
-2.	Masuk ke direktori proyek dengan menjalankan cd nama_proyek
+2.	Masuk ke direktori proyek dengan menjalankan 
+   ```bash
+   cd nama_proyek 
+   ```
 3.	Instal semua dependency PHP yang diperlukan jalankan perintah 
    ```bash
    composer install
    ```
-4.	Salin file .env.example menjadi .env bisa juga dengan menjalankan perintah cp .env.example .env
+4.	Salin file .env.example menjadi .env bisa juga dengan menjalankan perintah
+   ```bash
+   cp .env.example .env 
+   ```
 5.	Edit file env sesuai dengan project
 6.	Jalankan perintah berikut, untuk membuat application key
    ```bash
@@ -59,6 +65,21 @@ Instalasi dan akses lokal
 
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+
+### Dependensi
+
+Website e perpus psdku polinema membutuhkan beberapa dependensi berikut:
+
+PHP Version: `8.2.4`
+
+```bash
+fakerphp/faker: ^1.23
+laravel/pint: ^1.13
+laravel/sail: ^1.26
+mockery/mockery: ^1.6
+nunomaduro/collision: ^8.0
+phpunit/phpunit: ^11.0.1
+```
 
 ### Premium Partners
 
