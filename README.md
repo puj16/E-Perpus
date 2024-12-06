@@ -64,7 +64,7 @@ Instalasi dan akses lokal
 13.	User member dapat melakukan peminjaman, perpanjangan peminjaman, membaca buku atau dokumen, mengedit profil, melihat histori peminjaman dan melakukan pengembalian.
 
 
-### Dependensi
+## Dependensi
 
 Website e perpus psdku polinema membutuhkan beberapa dependensi berikut:
 
